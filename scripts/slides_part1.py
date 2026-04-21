@@ -12,14 +12,14 @@ from pptx_helpers import (
     BLUE, DARK, LIGHT, WHITE, ACCENT, TMID, RED_ERR, RED_BG,
 )
 
-TOTAL = '13'
 HDR_H = Inches(0.55)
 FTR_H = Inches(0.38)
 BODY_Y = HDR_H
 
 
-def build_slides_1_8(prs):
+def build_slides_1_8(prs, total='13'):
     BLANK = prs.slide_layouts[6]
+    TOTAL = total
 
     # ── S01: 타이틀 ──────────────────────────────────────────
     sl = prs.slides.add_slide(BLANK)
