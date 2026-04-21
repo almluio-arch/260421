@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>왜 잘 나가는 원장님들은 '마케팅천재'를 찾을까요?</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+/* === RESET & THEME === */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --blue:#1a6fd8;--blue-dk:#1254a8;--blue-lt:rgba(26,111,216,0.08);
+  --dark:#0f1923;--light:#f4f7fa;--white:#fff;--accent:#f0c040;
+  --tmid:#4a5568;--tlt:rgba(255,255,255,0.8);
+  --ff-serif:'Noto Serif KR',serif;--ff-sans:'Noto Sans KR',sans-serif;
+  --t1:clamp(1.6rem,3.5vw,3rem);--t2:clamp(1.2rem,2.8vw,2.4rem);
+  --t3:clamp(0.9rem,1.8vw,1.4rem);--tb:clamp(0.75rem,1.3vw,1rem);
+  --ts:clamp(0.62rem,1vw,0.8rem);
+  --pad:clamp(1.5rem,4vw,4rem);--gap:clamp(0.6rem,1.5vw,1.2rem);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+/* === VIEWPORT BASE === */
+html,body{height:100%;overflow-x:hidden;}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+.slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;
+  scroll-snap-align:start;display:flex;flex-direction:column;position:relative;}
+.slide-content{flex:1;display:flex;flex-direction:column;justify-content:center;
+  max-height:100%;overflow:hidden;padding:var(--pad);}
+.card,.content-box{max-width:min(90vw,1000px);max-height:min(80vh,700px);}
+img,.image-container{max-width:100%;max-height:min(50vh,400px);object-fit:contain;}
+@media(max-height:700px){:root{--pad:clamp(0.75rem,3vw,2rem);--gap:clamp(0.4rem,1vw,0.8rem);--t1:clamp(1.25rem,4vw,2.2rem);--t2:clamp(1rem,3vw,1.7rem);}}
+@media(max-height:600px){:root{--pad:clamp(0.5rem,2vw,1.2rem);--t1:clamp(1rem,3.5vw,1.8rem);--tb:clamp(0.65rem,1vw,0.85rem);}
+  .nav-dots{display:none;}}
+@media(max-height:500px){:root{--pad:clamp(0.4rem,1.5vw,0.8rem);--t1:clamp(0.9rem,3vw,1.4rem);}}
+@media(max-width:600px){.two-col,.split{grid-template-columns:1fr!important;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important;}html{scroll-behavior:auto;}}
+/* === ANIMATIONS === */
+.rv{opacity:0;transform:translateY(22px);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease);}
+.rl{opacity:0;transform:translateX(-22px);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease);}
+.rs{opacity:0;transform:scale(0.93);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease);}
+.slide.visible .rv,.slide.visible .rl,.slide.visible .rs{opacity:1;transform:none;}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+/* === PROGRESS & DOTS === */
+.progress-bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--blue);z-index:1000;transition:width .3s ease;}
+.nav-dots{position:fixed;right:clamp(0.8rem,1.5vw,1.2rem);top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:.5rem;z-index:999;list-style:none;}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(26,111,216,.22);
+  cursor:pointer;border:none;padding:0;transition:all .3s ease;}
+.nav-dot.active{background:var(--blue);transform:scale(1.5);}
+/* === SHARED LAYOUT PARTS === */
+.hdr{background:var(--dark);height:clamp(2.8rem,6vh,5rem);display:flex;align-items:center;
+  justify-content:space-between;padding:0 var(--pad);flex-shrink:0;position:relative;}
+.hdr::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--blue);}
+.hdr-brand{font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:#fff;letter-spacing:.08em;}
+.hdr-tag{font-family:var(--ff-sans);font-size:var(--ts);color:rgba(255,255,255,.4);letter-spacing:.1em;}
+.ftr{height:clamp(1.6rem,3vh,2.5rem);background:var(--blue);display:flex;align-items:center;
+  padding:0 var(--pad);flex-shrink:0;}
+.ftr-txt{font-family:var(--ff-sans);font-size:var(--ts);color:rgba(255,255,255,.7);}
+.ftr-num{margin-left:auto;font-family:var(--ff-serif);font-size:var(--ts);font-weight:700;color:rgba(255,255,255,.5);}
+.faq-tag{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue-lt);
+  border:1.5px solid rgba(26,111,216,.25);color:var(--blue);font-family:var(--ff-sans);
+  font-size:var(--ts);font-weight:700;letter-spacing:.12em;padding:.3em .85em;border-radius:2px;
+  margin-bottom:var(--gap);}
+.ans{background:rgba(26,111,216,.05);border-left:3px solid var(--blue);
+  padding:clamp(.5rem,1.2vw,1rem) clamp(.7rem,1.5vw,1.2rem);margin-bottom:var(--gap);}
+.ans-lbl{font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:var(--blue);
+  letter-spacing:.08em;margin-bottom:.3em;}
+.ans p{font-family:var(--ff-sans);font-size:var(--tb);font-weight:500;color:var(--dark);line-height:1.55;}
+.ans p strong{font-weight:700;}
+.slide-h2{font-family:var(--ff-serif);font-size:var(--t2);font-weight:700;color:var(--dark);
+  line-height:1.3;margin-bottom:var(--gap);letter-spacing:-.02em;}
+.slide-h2 .hl{color:var(--blue);}
+.body-p{font-family:var(--ff-sans);font-size:var(--tb);color:var(--tmid);line-height:1.7;
+  margin-bottom:var(--gap);}
+.body-p strong{color:var(--dark);font-weight:700;}
+.ghost-num{position:absolute;top:clamp(.3rem,1vh,1.5rem);right:var(--pad);
+  font-family:var(--ff-serif);font-size:clamp(4rem,9vw,8rem);font-weight:700;
+  color:rgba(26,111,216,.06);line-height:1;pointer-events:none;}
+
+/* === SLIDE 1: TITLE SPLIT === */
+.s1{display:grid;grid-template-columns:1fr 1fr;}
+.s1-left{background:var(--light);display:flex;flex-direction:column;justify-content:center;
+  padding:var(--pad);position:relative;overflow:hidden;}
+.s1-left::after{content:'';position:absolute;
+  bottom:calc(-1 * clamp(50px,12vw,150px));left:calc(-1 * clamp(40px,8vw,90px));
+  width:clamp(160px,32vw,380px);height:clamp(160px,32vw,380px);
+  border-radius:50%;border:1.5px solid rgba(26,111,216,.1);pointer-events:none;}
+.s1-eye{font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;letter-spacing:.2em;
+  color:var(--blue);text-transform:uppercase;margin-bottom:var(--gap);}
+.s1-h1{font-family:var(--ff-serif);font-size:clamp(1.4rem,3vw,2.6rem);font-weight:700;
+  color:var(--dark);line-height:1.3;letter-spacing:-.02em;margin-bottom:var(--gap);}
+.s1-h1 span{color:var(--blue);}
+.s1-div{width:clamp(1.8rem,3.5vw,3rem);height:3px;background:var(--blue);margin-bottom:var(--gap);}
+.s1-sub{font-family:var(--ff-sans);font-size:clamp(.7rem,1.1vw,.88rem);font-weight:300;
+  color:var(--tmid);line-height:1.7;margin-bottom:var(--gap);}
+.s1-contact{padding:clamp(.5rem,1vw,.9rem) clamp(.7rem,1.3vw,1.1rem);
+  border-left:3px solid var(--blue);background:rgba(26,111,216,.05);display:inline-block;}
+.s1-contact .cn{font-family:var(--ff-sans);font-size:var(--tb);font-weight:700;color:var(--dark);}
+.s1-contact .cp{font-family:var(--ff-sans);font-size:var(--ts);color:var(--tmid);margin-top:.2rem;}
+.s1-right{background:var(--blue);display:flex;flex-direction:column;justify-content:center;
+  padding:var(--pad);position:relative;overflow:hidden;}
+.s1-right .bg{position:absolute;bottom:-.15em;right:-.05em;font-family:var(--ff-serif);
+  font-size:clamp(7rem,18vw,20rem);font-weight:700;color:rgba(255,255,255,.05);
+  line-height:1;pointer-events:none;}
+.stat-big .num{font-family:var(--ff-serif);font-size:clamp(2.5rem,5.5vw,5.5rem);
+  font-weight:700;color:#fff;line-height:1;display:block;}
+.stat-big .num em{color:var(--accent);font-style:normal;}
+.stat-big .lbl{font-family:var(--ff-sans);font-size:clamp(.65rem,1vw,.85rem);font-weight:300;
+  color:rgba(255,255,255,.7);display:block;margin-top:.35rem;}
+.pts{list-style:none;margin-top:clamp(1rem,2vw,2rem);display:flex;flex-direction:column;gap:var(--gap);}
+.pt{display:flex;align-items:center;gap:.6rem;font-family:var(--ff-sans);
+  font-size:clamp(.65rem,1vw,.85rem);color:rgba(255,255,255,.85);}
+.pt::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+
+/* === SLIDE 2: QUOTE DARK === */
+.s2{background:var(--dark);}
+.s2-body{flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:var(--pad);position:relative;overflow:hidden;}
+.s2-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:var(--ff-serif);font-size:clamp(6rem,18vw,20rem);font-weight:700;
+  color:rgba(255,255,255,.03);white-space:nowrap;pointer-events:none;user-select:none;}
+.q-mark{font-family:var(--ff-serif);font-size:clamp(2.5rem,5vw,5rem);color:var(--blue);
+  line-height:.8;margin-bottom:var(--gap);}
+.q-txt{font-family:var(--ff-serif);font-size:clamp(1.1rem,2.5vw,2.2rem);font-weight:600;
+  color:#fff;line-height:1.55;max-width:28ch;margin-bottom:var(--gap);}
+.q-txt em{color:var(--accent);font-style:normal;}
+.q-sub{font-family:var(--ff-sans);font-size:var(--tb);font-weight:300;
+  color:rgba(255,255,255,.5);max-width:48ch;line-height:1.7;margin-bottom:var(--gap);}
+.q-stats{display:flex;gap:clamp(1.5rem,4vw,4rem);}
+.qs .qn{font-family:var(--ff-serif);font-size:clamp(1.4rem,2.8vw,2.6rem);
+  font-weight:700;color:var(--accent);line-height:1;}
+.qs .ql{font-family:var(--ff-sans);font-size:var(--ts);color:rgba(255,255,255,.45);margin-top:.2rem;}
+
+/* === SLIDE 3: FAQ CARDS === */
+.fcards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:var(--gap);}
+.fc{background:var(--light);border-top:3px solid var(--blue);
+  padding:clamp(.7rem,1.3vw,1.1rem);display:flex;flex-direction:column;gap:.4rem;}
+.fc-icon{font-size:clamp(1.2rem,1.8vw,1.6rem);}
+.fc-title{font-family:var(--ff-sans);font-size:clamp(.7rem,1.1vw,.9rem);
+  font-weight:700;color:var(--dark);line-height:1.3;}
+.fc-desc{font-family:var(--ff-sans);font-size:clamp(.62rem,.95vw,.78rem);
+  font-weight:300;color:var(--tmid);line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="pb"></div>
+<nav class="nav-dots" id="nd"></nav>
+
+<!-- SLIDE 01: TITLE -->
+<section class="slide s1" id="s1">
+  <div class="s1-left">
+    <div class="s1-eye rv d1">2026 병원 성장 전략 가이드</div>
+    <h1 class="s1-h1 rv d2">왜 잘 나가는 원장님들은<br><span>'마케팅천재'</span>를 찾을까요?</h1>
+    <div class="s1-div rv d3"></div>
+    <p class="s1-sub rv d4">수년 간 1,000개+ 병원 마케팅 데이터를<br>분석한 결과, 답은 명확했습니다.</p>
+    <div class="s1-contact rv d5">
+      <div class="cn">마케팅천재 · 대표 정귀명</div>
+      <div class="cp">010-5848-9572 (카톡/전화)</div>
+    </div>
+  </div>
+  <div class="s1-right">
+    <div class="bg">01</div>
+    <div class="stat-big rv d2">
+      <span class="num">1,000<em>+</em></span>
+      <span class="lbl">병원 마케팅 데이터 분석</span>
+    </div>
+    <ul class="pts">
+      <li class="pt rv d3">브랜드 블로그 × 플레이스 시너지</li>
+      <li class="pt rv d4">신환 · 내방 폭발적 증가</li>
+      <li class="pt rv d5">마케팅 ROAS 평균 1,000%+</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SLIDE 02: 핵심 결론 -->
+<section class="slide s2" id="s2">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">핵심 결론</span></div>
+  <div class="s2-body">
+    <div class="s2-bg">BLOG</div>
+    <div class="q-mark rv d1">"</div>
+    <p class="q-txt rv d2">병원 마케팅에서<br><em>[브랜드 블로그]</em>와 <em>[플레이스]</em> 조합을<br>이길 수 있는 매체는 없습니다.</p>
+    <p class="q-sub rv d3">이 두 고리가 맞물렸을 때 '신환'과 '내방'이라는 결과가 폭발적으로 터져 나왔습니다.</p>
+    <div class="q-stats rv d4">
+      <div class="qs"><div class="qn">50x</div><div class="ql">파워링크 대비 효율</div></div>
+      <div class="qs"><div class="qn">1,000%</div><div class="ql">평균 ROAS</div></div>
+      <div class="qs"><div class="qn">6개월</div><div class="ql">J커브 점유 타임라인</div></div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">02 / 10</span></div>
+</section>
+
+<!-- SLIDE 03: FAQ 1 블로그 필요? -->
+<section class="slide" id="s3">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 01</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q1</div>
+    <div class="faq-tag rv d1">FAQ 01</div>
+    <h2 class="slide-h2 rv d2">요즘 시대에 블로그를<br>꼭 해야 하나요?</h2>
+    <div class="ans rv d3">
+      <div class="ans-lbl">✅ A.</div>
+      <p><strong>네, 2026년 현재까지도 가장 안정적으로 내원을 만드는 마케팅은 단연코 블로그입니다.</strong></p>
+    </div>
+    <p class="body-p rv d4">"가장 먼저, 그리고 반드시 <strong>브랜드블로그부터 시작</strong>하셔야 합니다."</p>
+    <div class="fcards rv d5">
+      <div class="fc">
+        <div class="fc-icon">⚖️</div>
+        <div class="fc-title">까다로운 의료광고법</div>
+        <div class="fc-desc">의료인 명의의 브랜드 블로그는 원장님의 진심과 전문성을 전달할 수 있는 유일한 공식 채널</div>
+      </div>
+      <div class="fc">
+        <div class="fc-icon">📈</div>
+        <div class="fc-title">복리로 쌓이는 자산</div>
+        <div class="fc-desc">매달 20~30개씩 포스팅이 누적되어 검색 상단을 장악하는 '디지털 부동산'이 됩니다</div>
+      </div>
+      <div class="fc">
+        <div class="fc-icon">🤖</div>
+        <div class="fc-title">AI 검색이 선택하는 데이터</div>
+        <div class="fc-desc">2026년 네이버 AI 답변 시스템은 '출처가 명확하고 깊이 있는 정보'를 우선순위로 선택</div>
+      </div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">03 / 10</span></div>
+</section>
+
+<!-- SLIDE 04: FAQ 2 효과 없었어요 -->
+<section class="slide" id="s4">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 02</span></div>
+  <div class="slide-content" style="background:var(--light);position:relative;">
+    <div class="ghost-num">Q2</div>
+    <div class="faq-tag rv d1">FAQ 02</div>
+    <h2 class="slide-h2 rv d2">블로그 해봤는데,<br>효과가 <span class="hl">없었어요.</span></h2>
+    <div class="ans rv d3">
+      <div class="ans-lbl">✅ A.</div>
+      <p>효과가 없었던 이유는 환자의 내방을 고려하지 않은 <strong>'편법/저품질 방식'</strong> 때문입니다.</p>
+    </div>
+    <div style="display:flex;gap:var(--gap);align-items:flex-start;" class="rv d4">
+      <div style="background:var(--blue);color:#fff;padding:clamp(.7rem,1.3vw,1.1rem) clamp(.9rem,1.8vw,1.5rem);flex-shrink:0;">
+        <div style="font-family:var(--ff-serif);font-size:clamp(1.8rem,4vw,3.5rem);font-weight:700;line-height:1;">50<span style="color:var(--accent);">배</span></div>
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;opacity:.8;margin-top:.3rem;">파워링크 대비 효율</div>
+      </div>
+      <div>
+        <p class="body-p" style="margin-bottom:.5rem;">노출쿼도에 올라간 블로그는 <strong>일 12~18만원 예산으로 하루 2~300명의 방문자</strong>를 만들어 냅니다.</p>
+        <p class="body-p" style="margin-bottom:0;">파워링크로 환산하면 동일량의 방문자를 만드는 데 <strong>하루 600만~900만원</strong>이 소요됩니다.</p>
+      </div>
+    </div>
+    <div style="background:rgba(239,68,68,.06);border-left:3px solid #ef4444;padding:clamp(.5rem,1vw,.9rem) clamp(.7rem,1.3vw,1.1rem);margin-top:var(--gap);" class="rv d5">
+      <p style="font-family:var(--ff-sans);font-size:var(--ts);color:#b91c1c;line-height:1.5;">
+        <strong>⚠ '싸구려 대행'에 속지 마세요</strong> — AI가 영혼 없이 돌린 원고나, 기계적 배포 방식은 이제 네이버에서 가장 먼저 걸러집니다.</p>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">04 / 10</span></div>
+</section>
+
+<!-- SLIDE 05: 마케팅천재 차별점 -->
+<section class="slide" id="s5">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">차별점</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">05</div>
+    <h2 class="slide-h2 rv d1">'마케팅천재'는<br>단순한 글쓰기 기계가 <span class="hl">아닙니다</span></h2>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--gap);" class="rv d2">
+      <li style="display:flex;align-items:flex-start;gap:var(--gap);padding:clamp(.6rem,1.2vw,1rem) clamp(.8rem,1.5vw,1.2rem);border-left:3px solid var(--blue);background:var(--blue-lt);">
+        <span style="font-family:var(--ff-serif);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:700;color:rgba(26,111,216,.2);line-height:1;flex-shrink:0;width:clamp(1.5rem,2.5vw,2rem);">01</span>
+        <div><div style="font-family:var(--ff-sans);font-size:var(--tb);font-weight:700;color:var(--dark);margin-bottom:.2rem;">상위노출 로직</div>
+          <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.5;">네이버 검색 알고리즘을 분석한 전략으로 검색 결과 최상단을 점령합니다</div></div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:var(--gap);padding:clamp(.6rem,1.2vw,1rem) clamp(.8rem,1.5vw,1.2rem);border-left:3px solid var(--blue);background:var(--blue-lt);">
+        <span style="font-family:var(--ff-serif);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:700;color:rgba(26,111,216,.2);line-height:1;flex-shrink:0;width:clamp(1.5rem,2.5vw,2rem);">02</span>
+        <div><div style="font-family:var(--ff-sans);font-size:var(--tb);font-weight:700;color:var(--dark);margin-bottom:.2rem;">검색 예상 키워드 발굴</div>
+          <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.5;">환자가 실제로 검색하는 황금 키워드를 발굴해 콘텐츠를 전략적으로 설계합니다</div></div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:var(--gap);padding:clamp(.6rem,1.2vw,1rem) clamp(.8rem,1.5vw,1.2rem);border-left:3px solid var(--blue);background:var(--blue-lt);">
+        <span style="font-family:var(--ff-serif);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:700;color:rgba(26,111,216,.2);line-height:1;flex-shrink:0;width:clamp(1.5rem,2.5vw,2rem);">03</span>
+        <div><div style="font-family:var(--ff-sans);font-size:var(--tb);font-weight:700;color:var(--dark);margin-bottom:.2rem;">심리 기획 원고로 내방 설계</div>
+          <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.5;">환자의 심리 흐름을 설계해 블로그를 읽는 것만으로 '방문 결심'을 이끌어냅니다</div></div>
+      </li>
+    </ul>
+    <p class="body-p rv d3" style="margin-top:var(--gap);font-size:var(--ts);">이것만이 2026년 의료 시장에서 가장 안전하게, 확실하게 <strong>원장님의 진료실 문을 열게 만드는 방법</strong>입니다.</p>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">05 / 10</span></div>
+</section>
+
+<!-- SLIDE 06: FAQ 3 언제쯤 성과? -->
+<section class="slide" id="s6">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 03</span></div>
+  <div class="slide-content" style="background:var(--light);position:relative;">
+    <div class="ghost-num">Q3</div>
+    <div class="faq-tag rv d1">FAQ 03</div>
+    <h2 class="slide-h2 rv d2">시작하면 신환이 바로 늘까요?<br>언제쯤 성과가 <span class="hl">보이나요?</span></h2>
+    <div class="ans rv d3">
+      <div class="ans-lbl">✅ A.</div>
+      <p>첫 달부터 환자가 줄 서는 기적은 없습니다.<br><strong>'임계점'을 넘는 순간 반드시 폭발합니다.</strong></p>
+    </div>
+    <p class="body-p rv d4">마케팅천재는 <strong>[플레이스 유입 + 블로그 설득]</strong> 시너지로 빌드업 속도를 압도적으로 앞당깁니다.</p>
+    <div style="display:flex;gap:clamp(1.2rem,3vw,3rem);" class="rv d5">
+      <div style="text-align:center;">
+        <div style="font-family:var(--ff-serif);font-size:clamp(1.8rem,4vw,3.5rem);font-weight:700;color:var(--blue);line-height:1;">10배</div>
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);color:var(--tmid);margin-top:.3rem;">마케팅 투자비용 대비</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--ff-serif);font-size:clamp(1.8rem,4vw,3.5rem);font-weight:700;color:var(--blue);line-height:1;">1,000%<span style="color:var(--accent);font-size:.6em;">+</span></div>
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);color:var(--tmid);margin-top:.3rem;">평균 ROAS</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--ff-serif);font-size:clamp(1.8rem,4vw,3.5rem);font-weight:700;color:var(--blue);line-height:1;">6개월</div>
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);color:var(--tmid);margin-top:.3rem;">J커브 점유 시점</div>
+      </div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">06 / 10</span></div>
+</section>
+
+<!-- SLIDE 07: 성과 가속 타임라인 -->
+<section class="slide" id="s7">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">🚀 성과 타임라인</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">07</div>
+    <h2 class="slide-h2 rv d1">데이터가 증명하는<br>'성과 가속' <span class="hl">타임라인</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:var(--gap);" class="rv d2">
+      <div style="background:var(--light);border-top:3px solid rgba(26,111,216,.35);padding:clamp(.8rem,1.5vw,1.2rem);">
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:var(--blue);letter-spacing:.06em;margin-bottom:.3rem;">1단계 · 1~2개월</div>
+        <div style="font-family:var(--ff-serif);font-size:clamp(.85rem,1.5vw,1.1rem);font-weight:700;color:var(--dark);margin-bottom:.5rem;">기반 구축기</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.35rem;">
+          <li style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.45;padding-left:.9rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--blue);font-weight:700;">·</span>병원 정체성 확립, 네이버 AI 신뢰 데이터 축적</li>
+          <li style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.45;padding-left:.9rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--blue);font-weight:700;">·</span>플레이스 상위노출 최적화 동시 진행</li>
+          <li style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.45;padding-left:.9rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--blue);font-weight:700;">·</span>브랜드 블로그 육성 시기</li>
+        </ul>
+      </div>
+      <div style="background:var(--light);border-top:3px solid rgba(26,111,216,.65);padding:clamp(.8rem,1.5vw,1.2rem);">
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:var(--blue);letter-spacing:.06em;margin-bottom:.3rem;">2단계 · 3~4개월</div>
+        <div style="font-family:var(--ff-serif);font-size:clamp(.85rem,1.5vw,1.1rem);font-weight:700;color:var(--dark);margin-bottom:.5rem;">확신 유입기</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.35rem;">
+          <li style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.45;padding-left:.9rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--blue);font-weight:700;">·</span>"블로그 보고 왔어요", "플레이스 보고 전화드렸어요"</li>
+          <li style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.45;padding-left:.9rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--blue);font-weight:700;">·</span>철학에 설득된 <strong style="color:var(--dark);">'충성 신환'</strong> 유입 시작</li>
+        </ul>
+      </div>
+      <div style="background:var(--light);border-top:3px solid var(--blue);padding:clamp(.8rem,1.5vw,1.2rem);">
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:var(--blue);letter-spacing:.06em;margin-bottom:.3rem;">3단계 · 6개월 이후</div>
+        <div style="font-family:var(--ff-serif);font-size:clamp(.85rem,1.5vw,1.1rem);font-weight:700;color:var(--dark);margin-bottom:.5rem;">J커브 점유기</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.35rem;">
+          <li style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.45;padding-left:.9rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--blue);font-weight:700;">·</span>'디지털 부동산' <strong style="color:var(--dark);">복리 효과</strong> 폭발</li>
+          <li style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.45;padding-left:.9rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--blue);font-weight:700;">·</span>주요 황금 키워드 점유, 경쟁 병원과 격차 확대</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">07 / 10</span></div>
+</section>
+
+<!-- SLIDE 08: FAQ 4 전문성 -->
+<section class="slide" id="s8">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 04</span></div>
+  <div class="slide-content" style="background:var(--light);position:relative;">
+    <div class="ghost-num">Q4</div>
+    <div class="faq-tag rv d1">FAQ 04</div>
+    <h2 class="slide-h2 rv d2">우리 병원의 전문성을<br>제대로 담아낼 수 있을까요?</h2>
+    <div class="ans rv d3">
+      <div class="ans-lbl">✅ A.</div>
+      <p><strong>원장님의 진료 철학과 병원의 핵심 강점을 써내는 것이 저희의 실력입니다.</strong></p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:var(--gap);" class="rv d4">
+      <div style="background:var(--white);border-top:3px solid var(--blue);padding:clamp(.7rem,1.3vw,1.1rem);">
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:var(--dark);margin-bottom:.3rem;">심층 인터뷰</div>
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.5;">진료 철학/핵심 강점을 단 한 번의 인터뷰로 압축</div>
+      </div>
+      <div style="background:var(--white);border-top:3px solid var(--blue);padding:clamp(.7rem,1.3vw,1.1rem);">
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:var(--dark);margin-bottom:.3rem;">의료 전문 작가 전담</div>
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.5;">전문 지식을 환자 눈높이의 <strong style="color:var(--dark);">'설득 언어'</strong>로 재탄생</div>
+      </div>
+      <div style="background:var(--white);border-top:3px solid var(--blue);padding:clamp(.7rem,1.3vw,1.1rem);">
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:var(--dark);margin-bottom:.3rem;">클린 IP & 보안 관리</div>
+        <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.5;">네이버가 신뢰하는 환경에서 안전하게 발행</div>
+      </div>
+    </div>
+    <p class="body-p rv d5" style="margin-top:var(--gap);font-size:var(--ts);">가장 비효율적인 병원은 원장님이 마케팅 원고를 고민하느라 <strong>진료와 경영에 에너지를 못 쏟는 것</strong>입니다.</p>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">08 / 10</span></div>
+</section>
+
+<!-- SLIDE 09: FAQ 5 경쟁 병원 -->
+<section class="slide" id="s9">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 05</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q5</div>
+    <div class="faq-tag rv d1">FAQ 05</div>
+    <h2 class="slide-h2 rv d2">주변 병원이 이미 선점했는데,<br>승산이 있을까요?</h2>
+    <div class="ans rv d3">
+      <div class="ans-lbl">✅ A.</div>
+      <p><strong>네, 충분합니다. 결국 복리가 쌓이는 시간 싸움입니다.</strong></p>
+    </div>
+    <div style="background:var(--light);border-left:3px solid var(--blue);padding:clamp(.7rem,1.3vw,1.1rem) clamp(.9rem,1.8vw,1.5rem);margin-top:var(--gap);" class="rv d4">
+      <div style="font-family:var(--ff-sans);font-size:var(--tb);font-weight:700;color:var(--dark);margin-bottom:.4rem;">후발주자를 단숨에 1위로 만드는 '최다 점유' 전략</div>
+      <p style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.6;">
+        <strong style="color:var(--dark);">네이버 허용 계정 '3개'를 300% 활용:</strong> 원장님 명의로 성격이 다른 3개 채널을 동시 가동<br>
+        (공식/철학형 · 정보/키워드형 · 스토리형)<br>
+        → 경쟁 병원이 1개 채널로 싸울 때, 우리는 <strong style="color:var(--blue);">3개 채널로 검색 결과를 장악</strong>합니다.
+      </p>
+    </div>
+    <p class="body-p rv d5" style="margin-top:var(--gap);">지금 시작해도 <strong>6개월이면 충분히 역전 가능</strong>합니다.</p>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">09 / 10</span></div>
+</section>
+
+<!-- SLIDE 10: CTA -->
+<section class="slide" id="s10" style="display:grid;grid-template-columns:1fr 1fr;">
+  <div style="background:var(--blue);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);position:relative;overflow:hidden;">
+    <div style="position:absolute;bottom:-.1em;right:-.05em;font-family:var(--ff-serif);font-size:clamp(5rem,14vw,14rem);font-weight:700;color:rgba(255,255,255,.05);line-height:1;pointer-events:none;">%</div>
+    <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:rgba(255,255,255,.55);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem;" class="rv d1">마케팅 투자 대비 수익률</div>
+    <div style="font-family:var(--ff-serif);font-size:clamp(2.5rem,6vw,6rem);font-weight:700;color:#fff;line-height:1;" class="rv d2">1,000<span style="color:var(--accent);">%</span></div>
+    <p style="font-family:var(--ff-sans);font-size:clamp(.7rem,1.1vw,.9rem);font-weight:300;color:rgba(255,255,255,.7);margin-top:.6rem;line-height:1.55;" class="rv d3">마케팅천재와 함께하는 원장님들이<br>실제로 경험하고 있는 평균 ROAS입니다.</p>
+    <ul style="list-style:none;margin-top:clamp(1rem,2vw,2rem);display:flex;flex-direction:column;gap:.5rem;" class="rv d4">
+      <li class="pt">브랜드 블로그 × 플레이스 시너지</li>
+      <li class="pt">6개월 J커브 성장 타임라인</li>
+      <li class="pt">복리로 쌓이는 디지털 자산</li>
+    </ul>
+  </div>
+  <div style="background:var(--light);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);overflow:hidden;">
+    <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;letter-spacing:.18em;color:var(--blue);text-transform:uppercase;margin-bottom:var(--gap);" class="rv d1">지금 바로 시작하세요</div>
+    <h2 style="font-family:var(--ff-serif);font-size:clamp(1.4rem,3vw,2.6rem);font-weight:700;color:var(--dark);line-height:1.3;letter-spacing:-.02em;margin-bottom:var(--gap);" class="rv d2">잘 나가는 원장님들이<br>선택한 이유,<br>직접 경험해보세요.</h2>
+    <div style="background:var(--dark);color:#fff;padding:clamp(.8rem,1.5vw,1.3rem) clamp(1rem,2vw,1.7rem);margin-bottom:var(--gap);" class="rv d3">
+      <div style="font-family:var(--ff-serif);font-size:clamp(1rem,1.8vw,1.5rem);font-weight:700;margin-bottom:.25rem;">마케팅천재</div>
+      <div style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:rgba(255,255,255,.55);">대표 정귀명</div>
+      <div style="font-family:var(--ff-sans);font-size:clamp(.85rem,1.4vw,1.1rem);font-weight:700;color:var(--accent);margin-top:.5rem;">010-5848-9572</div>
+    </div>
+    <p style="font-family:var(--ff-sans);font-size:var(--ts);font-weight:300;color:var(--tmid);line-height:1.6;" class="rv d4">카카오톡 또는 전화로 문의주시면<br>무료 상담 후 맞춤 전략을 제안드립니다.</p>
+  </div>
+</section>
+
+<script>
+class SlidePresentation {
+  constructor() {
+    this.slides = Array.from(document.querySelectorAll('.slide'));
+    this.total = this.slides.length;
+    this.current = 0;
+    this.locked = false;
+    this.pb = document.getElementById('pb');
+    this.nd = document.getElementById('nd');
+    this.buildDots();
+    this.observe();
+    this.keys();
+    this.touch();
+    this.wheel();
+    this.updateUI(0);
+  }
+  buildDots() {
+    this.nd.innerHTML = '';
+    this.slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.className = 'nav-dot' + (i === 0 ? ' active' : '');
+      b.setAttribute('aria-label', `슬라이드 ${i+1}`);
+      b.addEventListener('click', () => this.goTo(i));
+      this.nd.appendChild(b);
+    });
+  }
+  observe() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          const i = this.slides.indexOf(e.target);
+          if (i !== -1) { this.current = i; this.updateUI(i); }
+        }
+      });
+    }, { threshold: 0.5 });
+    this.slides.forEach(s => io.observe(s));
+  }
+  keys() {
+    document.addEventListener('keydown', e => {
+      if (['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)) { e.preventDefault(); this.next(); }
+      else if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); this.prev(); }
+    });
+  }
+  touch() {
+    let sy = 0;
+    document.addEventListener('touchstart', e => { sy = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', e => {
+      const dy = sy - e.changedTouches[0].clientY;
+      if (Math.abs(dy) > 50) dy > 0 ? this.next() : this.prev();
+    }, { passive: true });
+  }
+  wheel() {
+    document.addEventListener('wheel', e => {
+      if (this.locked) return;
+      this.locked = true;
+      e.deltaY > 0 ? this.next() : this.prev();
+      setTimeout(() => { this.locked = false; }, 800);
+    }, { passive: true });
+  }
+  goTo(i) {
+    if (i < 0 || i >= this.total) return;
+    this.slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+  next() { this.goTo(this.current + 1); }
+  prev() { this.goTo(this.current - 1); }
+  updateUI(i) {
+    if (this.pb) this.pb.style.width = (this.total <= 1 ? 100 : (i / (this.total - 1)) * 100) + '%';
+    this.nd.querySelectorAll('.nav-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+  }
+}
+new SlidePresentation();
+</script>
+</body>
+</html>
