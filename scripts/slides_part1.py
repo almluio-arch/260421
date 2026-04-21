@@ -12,7 +12,7 @@ from pptx_helpers import (
     BLUE, DARK, LIGHT, WHITE, ACCENT, TMID, RED_ERR, RED_BG,
 )
 
-TOTAL = '15'
+TOTAL = '13'
 HDR_H = Inches(0.55)
 FTR_H = Inches(0.38)
 BODY_Y = HDR_H
