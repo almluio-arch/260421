@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Style C – Impact Red</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: #f5f3ef; }
+
+  :root {
+    --cream: #f5f3ef;
+    --dark: #111111;
+    --red: #e02020;
+    --red-light: rgba(224,32,32,0.08);
+  }
+
+  .slide {
+    width: 100vw; height: 100vh; height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--cream);
+    position: relative;
+  }
+
+  /* Full-width top red band */
+  .top-band {
+    background: var(--dark);
+    height: clamp(3.5rem, 8vh, 7rem);
+    display: flex;
+    align-items: center;
+    padding: 0 clamp(2rem, 5vw, 5rem);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .top-band::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--red);
+  }
+
+  .top-band .brand {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+
+  .top-band .guide-tag {
+    margin-left: auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* Main content */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 4vw, 4rem) clamp(2rem, 5vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* large ghost text background */
+  .ghost-text {
+    position: absolute;
+    bottom: -0.25em;
+    right: -0.05em;
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: clamp(6rem, 18vw, 18rem);
+    color: rgba(0,0,0,0.04);
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .question-mark {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: clamp(0.5rem, 1vw, 1rem);
+    opacity: 0;
+    animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.1s forwards;
+  }
+
+  h1 {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: clamp(1.8rem, 4.5vw, 4rem);
+    color: var(--dark);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: clamp(1rem, 2vw, 2rem);
+    opacity: 0;
+    animation: slideRight 0.6s cubic-bezier(0.16,1,0.3,1) 0.35s forwards;
+  }
+
+  h1 .highlight {
+    color: var(--red);
+    position: relative;
+  }
+
+  /* underline on highlight */
+  h1 .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--red);
+    opacity: 0.4;
+  }
+
+  .answer-box {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(0.8rem, 1.5vw, 1.2rem);
+    background: var(--dark);
+    color: #fff;
+    padding: clamp(0.8rem, 1.5vw, 1.4rem) clamp(1.2rem, 2.5vw, 2rem);
+    max-width: clamp(300px, 65vw, 700px);
+    opacity: 0;
+    animation: slideRight 0.6s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+  }
+
+  .answer-box .icon {
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+
+  .answer-box p {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .answer-box strong {
+    color: #f0c040;
+  }
+
+  /* bottom strip */
+  .bottom-strip {
+    height: clamp(2rem, 4vh, 3.5rem);
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    padding: 0 clamp(2rem, 5vw, 5rem);
+    flex-shrink: 0;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 1s forwards;
+  }
+
+  .bottom-strip span {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bottom-strip .contact {
+    margin-left: auto;
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.5); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="top-band">
+    <span class="brand">마케팅천재</span>
+    <span class="guide-tag">2026 병원 성장 전략</span>
+  </div>
+
+  <div class="main">
+    <div class="ghost-text">FAQ</div>
+    <div class="question-mark">?</div>
+    <h1>왜 잘 나가는 원장님들은<br><span class="highlight">'마케팅천재'</span>를 찾을까요?</h1>
+    <div class="answer-box">
+      <span class="icon">💡</span>
+      <p>수년 간 1,000개+ 병원 마케팅 데이터를 분석한 결과,<br>
+      <strong>브랜드 블로그 × 플레이스</strong> 조합을 이길 수 있는 매체는 없습니다.</p>
+    </div>
+  </div>
+
+  <div class="bottom-strip">
+    <span>대표 정귀명</span>
+    <span class="contact">010-5848-9572</span>
+  </div>
+</section>
+</body>
+</html>
