@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>마케팅천재 – 2026 병원 성장 전략 가이드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --blue:#1a6fd8;--blue-dk:#1254a8;--blue-lt:rgba(26,111,216,0.08);
+  --dark:#0f1923;--light:#f4f7fa;--white:#fff;--accent:#f0c040;
+  --tmid:#4a5568;
+  --ff-serif:'Noto Serif KR',serif;--ff-sans:'Noto Sans KR',sans-serif;
+  --t1:clamp(1.6rem,3.5vw,3rem);--t2:clamp(1.2rem,2.8vw,2.4rem);
+  --tb:clamp(0.75rem,1.3vw,1rem);--ts:clamp(0.62rem,1vw,0.8rem);
+  --pad:clamp(1.5rem,4vw,4rem);--gap:clamp(0.6rem,1.5vw,1.2rem);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html,body{height:100%;overflow-x:hidden;}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+.slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;position:relative;}
+.slide-content{flex:1;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden;padding:var(--pad);}
+@media(max-height:700px){:root{--pad:clamp(0.75rem,3vw,2rem);--gap:clamp(0.4rem,1vw,0.8rem);--t2:clamp(1rem,3vw,1.7rem);}}
+@media(max-height:600px){:root{--pad:clamp(0.5rem,2vw,1.2rem);}.nav-dots{display:none;}}
+@media(max-width:600px){.two-col{grid-template-columns:1fr!important;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;}html{scroll-behavior:auto;}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease);}
+.rl{opacity:0;transform:translateX(-22px);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease);}
+.rs{opacity:0;transform:scale(0.93);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease);}
+.rv.visible,.rl.visible,.rs.visible{opacity:1;transform:none;}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+.progress-bar{position:fixed;top:0;left:0;height:3px;width:100%;background:rgba(26,111,216,.15);z-index:1000;}
+.progress-fill{height:100%;width:0;background:var(--blue);transition:width .3s ease;}
+.nav-dots{position:fixed;right:clamp(0.8rem,1.5vw,1.2rem);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.5rem;z-index:999;list-style:none;}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(26,111,216,.22);cursor:pointer;border:none;padding:0;transition:all .3s ease;}
+.dot.active{background:var(--blue);transform:scale(1.5);}
+.hdr{background:var(--dark);height:clamp(2.8rem,6vh,5rem);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);flex-shrink:0;position:relative;}
+.hdr::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--blue);}
+.hdr-brand{font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:#fff;letter-spacing:.08em;}
+.hdr-tag{font-family:var(--ff-sans);font-size:var(--ts);color:rgba(255,255,255,.4);letter-spacing:.1em;}
+.ftr{height:clamp(1.6rem,3vh,2.5rem);background:var(--blue);display:flex;align-items:center;padding:0 var(--pad);flex-shrink:0;}
+.ftr-txt{font-family:var(--ff-sans);font-size:var(--ts);color:rgba(255,255,255,.7);}
+.ftr-num{margin-left:auto;font-family:var(--ff-serif);font-size:var(--ts);font-weight:700;color:rgba(255,255,255,.5);}
+.faq-tag{display:inline-flex;align-items:center;background:var(--blue-lt);border:1.5px solid rgba(26,111,216,.25);color:var(--blue);font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;letter-spacing:.12em;padding:.3em .85em;border-radius:2px;margin-bottom:var(--gap);}
+.ans{background:rgba(26,111,216,.05);border-left:3px solid var(--blue);padding:clamp(.5rem,1.2vw,1rem) clamp(.7rem,1.5vw,1.2rem);margin-bottom:var(--gap);}
+.ans-lbl{font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:var(--blue);margin-bottom:.3em;}
+.ans p{font-family:var(--ff-sans);font-size:var(--tb);font-weight:500;color:var(--dark);line-height:1.55;}
+.slide-h2{font-family:var(--ff-serif);font-size:var(--t2);font-weight:700;color:var(--dark);line-height:1.3;margin-bottom:var(--gap);letter-spacing:-.02em;}
+.slide-h2 .hl{color:var(--blue);}
+.body-p{font-family:var(--ff-sans);font-size:var(--tb);color:var(--tmid);line-height:1.7;margin-bottom:var(--gap);}
+.body-p strong{color:var(--dark);font-weight:700;}
+.ghost-num{position:absolute;top:clamp(.3rem,1vh,1.5rem);right:var(--pad);font-family:var(--ff-serif);font-size:clamp(4rem,9vw,8rem);font-weight:700;color:rgba(26,111,216,.06);line-height:1;pointer-events:none;}
+/* S1 */
+.s1{display:grid;grid-template-columns:1fr 1fr;}
+.s1-left{background:var(--light);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);position:relative;overflow:hidden;}
+.s1-left::after{content:'';position:absolute;bottom:calc(-1 * clamp(50px,12vw,150px));left:calc(-1 * clamp(40px,8vw,90px));width:clamp(160px,32vw,380px);height:clamp(160px,32vw,380px);border-radius:50%;border:1.5px solid rgba(26,111,216,.1);pointer-events:none;}
+.s1-eye{font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;letter-spacing:.2em;color:var(--blue);text-transform:uppercase;margin-bottom:var(--gap);}
+.s1-h1{font-family:var(--ff-serif);font-size:clamp(1.4rem,3vw,2.6rem);font-weight:700;color:var(--dark);line-height:1.3;letter-spacing:-.02em;margin-bottom:var(--gap);}
+.s1-h1 span{color:var(--blue);}
+.s1-div{width:clamp(1.8rem,3.5vw,3rem);height:3px;background:var(--blue);margin-bottom:var(--gap);}
+.s1-sub{font-family:var(--ff-sans);font-size:clamp(.7rem,1.1vw,.88rem);font-weight:300;color:var(--tmid);line-height:1.7;margin-bottom:var(--gap);}
+.s1-contact{padding:clamp(.5rem,1vw,.9rem) clamp(.7rem,1.3vw,1.1rem);border-left:3px solid var(--blue);background:rgba(26,111,216,.05);}
+.s1-contact .cn{font-family:var(--ff-sans);font-size:var(--tb);font-weight:700;color:var(--dark);}
+.s1-contact .cp{font-family:var(--ff-sans);font-size:var(--ts);color:var(--tmid);margin-top:.2rem;}
+.s1-right{background:var(--blue);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);position:relative;overflow:hidden;}
+.s1-right .bg{position:absolute;bottom:-.15em;right:-.05em;font-family:var(--ff-serif);font-size:clamp(7rem,18vw,20rem);font-weight:700;color:rgba(255,255,255,.05);line-height:1;pointer-events:none;}
+.stat-big .num{font-family:var(--ff-serif);font-size:clamp(2.5rem,5.5vw,5.5rem);font-weight:700;color:#fff;line-height:1;display:block;}
+.stat-big .num em{color:var(--accent);font-style:normal;}
+.stat-big .lbl{font-family:var(--ff-sans);font-size:clamp(.65rem,1vw,.85rem);font-weight:300;color:rgba(255,255,255,.7);display:block;margin-top:.35rem;}
+.pts{list-style:none;margin-top:clamp(1rem,2vw,2rem);display:flex;flex-direction:column;gap:var(--gap);}
+.pt{display:flex;align-items:center;gap:.6rem;font-family:var(--ff-sans);font-size:clamp(.65rem,1vw,.85rem);color:rgba(255,255,255,.85);}
+.pt::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+/* S2 */
+.s2{background:var(--dark);}
+.s2-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:var(--pad);position:relative;overflow:hidden;}
+.s2-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--ff-serif);font-size:clamp(6rem,18vw,20rem);font-weight:700;color:rgba(255,255,255,.03);white-space:nowrap;pointer-events:none;user-select:none;}
+.q-mark{font-family:var(--ff-serif);font-size:clamp(2.5rem,5vw,5rem);color:var(--blue);line-height:.8;margin-bottom:var(--gap);}
+.q-txt{font-family:var(--ff-serif);font-size:clamp(1.1rem,2.5vw,2.2rem);font-weight:600;color:#fff;line-height:1.55;max-width:28ch;margin-bottom:var(--gap);}
+.q-txt em{color:var(--accent);font-style:normal;}
+.q-sub{font-family:var(--ff-sans);font-size:var(--tb);font-weight:300;color:rgba(255,255,255,.5);max-width:48ch;line-height:1.7;margin-bottom:var(--gap);}
+.q-stats{display:flex;gap:clamp(1.5rem,4vw,4rem);}
+.qs .qn{font-family:var(--ff-serif);font-size:clamp(1.4rem,2.8vw,2.6rem);font-weight:700;color:var(--accent);line-height:1;}
+.qs .ql{font-family:var(--ff-sans);font-size:var(--ts);color:rgba(255,255,255,.45);margin-top:.2rem;}
+/* FAQ cards */
+.fcards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:var(--gap);}
+.fc{background:var(--light);border-top:3px solid var(--blue);padding:clamp(.7rem,1.3vw,1.1rem);display:flex;flex-direction:column;gap:.4rem;}
+.fc-icon{font-size:clamp(1.2rem,1.8vw,1.6rem);}
+.fc-title{font-family:var(--ff-sans);font-size:clamp(.7rem,1.1vw,.9rem);font-weight:700;color:var(--dark);line-height:1.3;}
+.fc-desc{font-family:var(--ff-sans);font-size:clamp(.62rem,.95vw,.78rem);font-weight:300;color:var(--tmid);line-height:1.5;}
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:var(--gap);}
+.pc{border:1.5px solid var(--blue);padding:clamp(.8rem,1.5vw,1.4rem);text-align:center;display:flex;flex-direction:column;gap:.4rem;}
+.pc.featured{background:var(--blue);}
+.pc-name{font-family:var(--ff-sans);font-size:var(--tb);font-weight:700;color:var(--dark);}
+.pc.featured .pc-name{color:#fff;}
+.pc-freq{font-family:var(--ff-sans);font-size:var(--ts);color:var(--tmid);}
+.pc.featured .pc-freq{color:rgba(255,255,255,.7);}
+.pc-price{font-family:var(--ff-serif);font-size:clamp(1.4rem,3vw,2.4rem);font-weight:700;color:var(--blue);line-height:1.1;}
+.pc.featured .pc-price{color:var(--accent);}
+.pc-desc{font-family:var(--ff-sans);font-size:var(--ts);color:var(--tmid);line-height:1.5;}
+.pc.featured .pc-desc{color:rgba(255,255,255,.75);}
+/* tip / quote boxes */
+.tip-box{border-left:3px solid var(--accent);background:rgba(240,192,64,.08);padding:clamp(.5rem,1vw,.9rem) clamp(.7rem,1.3vw,1.1rem);margin:var(--gap) 0;}
+.quote-box{border-left:3px solid var(--dark);background:rgba(15,25,35,.05);padding:clamp(.5rem,1vw,.9rem) clamp(.7rem,1.3vw,1.1rem);margin:var(--gap) 0;}
+/* CTA split */
+.cta-split{display:grid;grid-template-columns:1fr 1fr;}
+.cta-left{background:var(--blue);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);position:relative;overflow:hidden;}
+.cta-left .bg-pct{position:absolute;bottom:-.1em;right:-.05em;font-family:var(--ff-serif);font-size:clamp(5rem,14vw,14rem);font-weight:700;color:rgba(255,255,255,.05);line-height:1;pointer-events:none;}
+.cta-right{background:var(--light);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);overflow:hidden;}
+.contact-card{background:var(--dark);color:#fff;padding:clamp(.8rem,1.5vw,1.3rem) clamp(1rem,2vw,1.7rem);margin:var(--gap) 0;}
+/* sub-p */
+.sub-p{font-family:var(--ff-sans);font-size:var(--tb);color:var(--tmid);line-height:1.6;margin-bottom:var(--gap);}
+/* tip/quote */
+.tip-box{font-family:var(--ff-sans);font-size:clamp(.65rem,1vw,.82rem);color:var(--dark);line-height:1.6;}
+.quote-box{font-family:var(--ff-sans);font-size:clamp(.7rem,1.05vw,.85rem);font-style:italic;color:var(--tmid);line-height:1.7;}
+/* diff grid (S05) */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:var(--gap);}
+.diff-item{background:var(--light);border-top:2px solid var(--blue);padding:clamp(.6rem,1.2vw,1rem);display:flex;flex-direction:column;gap:.35rem;}
+.diff-icon{font-size:clamp(1.1rem,1.6vw,1.5rem);}
+.diff-title{font-family:var(--ff-sans);font-size:clamp(.68rem,1vw,.88rem);font-weight:700;color:var(--dark);}
+.diff-desc{font-family:var(--ff-sans);font-size:clamp(.6rem,.9vw,.76rem);font-weight:300;color:var(--tmid);line-height:1.5;}
+/* compare table (S06, S10) */
+.compare-table{margin-top:var(--gap);border:1px solid rgba(26,111,216,.15);overflow:hidden;}
+.ct-head{display:grid;grid-template-columns:1.8fr repeat(2,1fr);background:var(--dark);padding:clamp(.4rem,.8vw,.7rem) clamp(.6rem,1vw,.9rem);gap:.5rem;}
+.ct-head>div{font-family:var(--ff-sans);font-size:clamp(.6rem,.9vw,.78rem);font-weight:700;color:rgba(255,255,255,.8);}
+.ct-row{display:grid;grid-template-columns:1.8fr repeat(2,1fr);padding:clamp(.35rem,.7vw,.6rem) clamp(.6rem,1vw,.9rem);gap:.5rem;border-top:1px solid rgba(26,111,216,.1);}
+.ct-row:nth-child(even){background:var(--light);}
+.ct-row>div{font-family:var(--ff-sans);font-size:clamp(.6rem,.9vw,.78rem);color:var(--tmid);}
+.ct-row>div:first-child{font-weight:500;color:var(--dark);}
+.ct-good{color:var(--blue)!important;font-weight:600!important;}
+/* compare table S10 (4 cols) */
+#s10 .ct-head,#s10 .ct-row{grid-template-columns:1.4fr repeat(3,1fr);}
+/* timeline (S07) */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin-top:var(--gap);position:relative;}
+.timeline::before{content:'';position:absolute;top:clamp(10px,1.5vw,14px);left:calc(var(--gap)/2);right:calc(var(--gap)/2);height:2px;background:rgba(26,111,216,.2);}
+.tl-item{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;padding-top:clamp(1.5rem,2.5vw,2.2rem);}
+.tl-dot{position:absolute;top:0;left:50%;transform:translateX(-50%);width:clamp(10px,1.4vw,14px);height:clamp(10px,1.4vw,14px);border-radius:50%;border:2px solid var(--blue);background:var(--white);}
+.tl-highlight .tl-dot{background:var(--blue);}
+.tl-month{font-family:var(--ff-sans);font-size:clamp(.6rem,.9vw,.78rem);font-weight:700;color:var(--blue);margin-bottom:.25rem;}
+.tl-title{font-family:var(--ff-sans);font-size:clamp(.65rem,.95vw,.82rem);font-weight:700;color:var(--dark);margin-bottom:.25rem;}
+.tl-desc{font-family:var(--ff-sans);font-size:clamp(.58rem,.82vw,.7rem);font-weight:300;color:var(--tmid);line-height:1.5;}
+.tl-highlight .tl-title{color:var(--blue);}
+/* price card extras */
+.pc-badge{font-family:var(--ff-sans);font-size:var(--ts);font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;}
+.pc-list{list-style:none;text-align:left;margin-top:.4rem;}
+.pc-list li{font-family:var(--ff-sans);font-size:clamp(.58rem,.88vw,.74rem);color:var(--tmid);line-height:1.7;padding-left:.8rem;position:relative;}
+.pc-list li::before{content:'·';position:absolute;left:0;color:var(--blue);}
+.pc.featured .pc-list li{color:rgba(255,255,255,.75);}
+/* CTA slide */
+.cta-logo{font-family:var(--ff-serif);font-size:clamp(1.2rem,2.2vw,2rem);font-weight:700;color:#fff;margin-bottom:var(--gap);}
+.cta-tagline{font-family:var(--ff-serif);font-size:clamp(1.3rem,2.8vw,2.5rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:var(--gap);}
+.cta-tagline em{color:var(--accent);font-style:normal;}
+.cta-sub{font-family:var(--ff-sans);font-size:var(--tb);color:rgba(255,255,255,.7);line-height:1.6;}
+.cta-label{font-family:var(--ff-sans);font-size:var(--tb);font-weight:700;color:var(--blue);margin-bottom:var(--gap);}
+.cta-contact{display:flex;flex-direction:column;gap:.5rem;margin-bottom:var(--gap);}
+.cc-item{font-family:var(--ff-sans);font-size:var(--tb);color:var(--dark);line-height:1.5;}
+.cta-benefits{display:flex;flex-direction:column;gap:.4rem;margin-bottom:var(--gap);}
+.cb{font-family:var(--ff-sans);font-size:clamp(.65rem,1vw,.82rem);color:var(--tmid);line-height:1.5;}
+.cta-urgency{font-family:var(--ff-sans);font-size:clamp(.65rem,1vw,.82rem);font-weight:700;color:var(--blue);background:rgba(26,111,216,.08);border-left:3px solid var(--blue);padding:.5rem .8rem;}
+</style>
+</head>
+<body>
+<main>
+
+<!-- S01 -->
+<section class="slide s1" id="s1">
+  <div class="s1-left">
+    <div class="s1-eye rv d1">2026 병원 성장 전략 가이드</div>
+    <h1 class="s1-h1 rv d2">왜 잘 나가는 원장님들은<br><span>'마케팅천재'</span>를 찾을까요?</h1>
+    <div class="s1-div rv d3"></div>
+    <p class="s1-sub rv d4">수년 간 1,000개+ 병원 마케팅 데이터를<br>분석한 결과, 답은 명확했습니다.</p>
+    <div class="s1-contact rv d5">
+      <div class="cn">마케팅천재 · 대표 정귀명</div>
+      <div class="cp">010-5848-9572 (카톡/전화)</div>
+    </div>
+  </div>
+  <div class="s1-right">
+    <div class="bg">01</div>
+    <div class="stat-big rv d2"><span class="num">1,000<em>+</em></span><span class="lbl">병원 마케팅 데이터 분석</span></div>
+    <ul class="pts">
+      <li class="pt rv d3">브랜드 블로그 × 플레이스 시너지</li>
+      <li class="pt rv d4">신환 · 내방 폭발적 증가</li>
+      <li class="pt rv d5">마케팅 ROAS 평균 1,000%+</li>
+    </ul>
+  </div>
+</section>
+
+<!-- S02 -->
+<section class="slide s2" id="s2">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">핵심 결론</span></div>
+  <div class="s2-body">
+    <div class="s2-bg">BLOG</div>
+    <div class="q-mark rv d1">"</div>
+    <p class="q-txt rv d2">병원 마케팅에서<br><em>[브랜드 블로그]</em>와 <em>[플레이스]</em> 조합을<br>이길 수 있는 매체는 없습니다.</p>
+    <p class="q-sub rv d3">이 두 고리가 맞물렸을 때 '신환'과 '내방'이라는 결과가 폭발적으로 터져 나왔습니다.</p>
+    <div class="q-stats rv d4">
+      <div class="qs"><div class="qn">50x</div><div class="ql">파워링크 대비 효율</div></div>
+      <div class="qs"><div class="qn">1,000%</div><div class="ql">평균 ROAS</div></div>
+      <div class="qs"><div class="qn">6개월</div><div class="ql">J커브 점유 타임라인</div></div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">02 / 15</span></div>
+</section>
+
+<!-- S03 -->
+<section class="slide" id="s3">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 01</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q1</div>
+    <div class="faq-tag rv d1">FAQ 01</div>
+    <h2 class="slide-h2 rv d2">요즘 시대에 블로그를<br>꼭 해야 하나요?</h2>
+    <div class="ans rv d3"><div class="ans-lbl">✅ A.</div><p><strong>네, 2026년 현재까지도 가장 안정적으로 내원을 만드는 마케팅은 단연코 블로그입니다.</strong></p></div>
+    <p class="body-p rv d4">"가장 먼저, 그리고 반드시 <strong>브랜드블로그부터 시작</strong>하셔야 합니다."</p>
+    <div class="fcards rv d5">
+      <div class="fc"><div class="fc-icon">⚖️</div><div class="fc-title">까다로운 의료광고법</div><div class="fc-desc">의료인 명의의 브랜드 블로그는 원장님의 진심과 전문성을 가장 논리적이고 깊이 있게 전달할 수 있는 유일한 공식 채널입니다.</div></div>
+      <div class="fc"><div class="fc-icon">📈</div><div class="fc-title">복리로 쌓이는 자산</div><div class="fc-desc">매달 20~30개씩 양질의 포스팅이 누적되어 검색 상단을 장악하는 '디지털 부동산'이 됩니다.</div></div>
+      <div class="fc"><div class="fc-icon">🤖</div><div class="fc-title">AI 검색이 선택하는 데이터</div><div class="fc-desc">2026년 네이버 AI 답변 시스템은 '출처가 명확하고 깊이 있는 정보'를 우선순위로 선택합니다.</div></div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">03 / 15</span></div>
+</section>
+
+<!-- S04 -->
+<section class="slide" id="s4">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 02</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q2</div>
+    <div class="faq-tag rv d1">FAQ 02</div>
+    <h2 class="slide-h2 rv d2">블로그 대행사가 너무 많아서<br>어떻게 골라야 할지 모르겠어요.</h2>
+    <div class="ans rv d3"><div class="ans-lbl">✅ A.</div><p><strong>원장님이 직접 글을 쓴 것처럼 보이는 브랜드블로그를 만들 수 있는 곳을 고르셔야 합니다.</strong></p></div>
+    <div class="fcards rv d4">
+      <div class="fc"><div class="fc-icon">🏷️</div><div class="fc-title">저가 대행사의 함정</div><div class="fc-desc">단순 키워드 SEO 포스팅 + 공장형 글쓰기 → 로직 변경 시 전부 무력화. 10만원짜리 포스팅이 100만원의 손해를 만듭니다.</div></div>
+      <div class="fc"><div class="fc-icon">🎯</div><div class="fc-title">마케팅천재의 기준</div><div class="fc-desc">원장님 인터뷰 기반 콘텐츠 · 의료광고 심의 통과 · 브랜드 일관성 유지 · 네이버 로직 최신 반영</div></div>
+      <div class="fc"><div class="fc-icon">📋</div><div class="fc-title">선택 체크리스트</div><div class="fc-desc">① 원장 인터뷰 포함? ② 의료광고법 준수? ③ 최근 6개월 상위노출 사례? ④ 전담 작가 배정?</div></div>
+    </div>
+    <div class="tip-box rv d5">💡 <strong>핵심:</strong> 블로그는 '글 수'가 아니라 '브랜드 신뢰'를 쌓는 작업입니다. 원장님 얼굴이 보이는 글이어야 합니다.</div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">04 / 15</span></div>
+</section>
+
+<!-- S05 -->
+<section class="slide" id="s5">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">차별점</span></div>
+  <div class="slide-content" style="background:var(--white);">
+    <h2 class="slide-h2 rv d1">왜 <em>마케팅천재</em>인가?</h2>
+    <p class="sub-p rv d2">의료 전문 콘텐츠 × 검색 로직 × 데이터 분석을 하나의 팀이 처리합니다</p>
+    <div class="diff-grid rv d3">
+      <div class="diff-item">
+        <div class="diff-icon">📝</div>
+        <div class="diff-title">원장 인터뷰 기반 글쓰기</div>
+        <div class="diff-desc">진료 철학·케이스·Q&A를 직접 채취해 '원장님 목소리'를 살린 포스팅 제작</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">⚖️</div>
+        <div class="diff-title">의료광고 심의 완벽 대응</div>
+        <div class="diff-desc">의료광고법 전문 검수 → 게재 후 심의 리스크 0%</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">📊</div>
+        <div class="diff-title">월간 성과 리포트</div>
+        <div class="diff-desc">상위노출 키워드 수 · 유입량 · 상담전환율을 수치로 공유</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">🔄</div>
+        <div class="diff-title">플레이스 연동 최적화</div>
+        <div class="diff-desc">블로그 ↔ 플레이스 시너지 설계로 복합 상단 점유 실현</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">🤖</div>
+        <div class="diff-title">AI 검색 대응 콘텐츠</div>
+        <div class="diff-desc">네이버 AI 답변·큐레이션 선택받는 구조화 콘텐츠 설계</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">🏆</div>
+        <div class="diff-title">업종별 레퍼런스</div>
+        <div class="diff-desc">내과·정형외과·피부과 등 30+ 진료과 성공 사례 보유</div>
+      </div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">05 / 15</span></div>
+</section>
+
+<!-- S06 -->
+<section class="slide" id="s6">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 03</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q3</div>
+    <div class="faq-tag rv d1">FAQ 03</div>
+    <h2 class="slide-h2 rv d2">직접 운영하는 것과<br>어떤 차이가 있나요?</h2>
+    <div class="ans rv d3"><div class="ans-lbl">✅ A.</div><p><strong>원장님의 시간은 진료에, 마케팅은 전문가에게 — 둘 다 잡을 수 있는 구조를 설계합니다.</strong></p></div>
+    <div class="compare-table rv d4">
+      <div class="ct-head"><div>구분</div><div>직접 운영</div><div>마케팅천재 대행</div></div>
+      <div class="ct-row"><div>월 소요 시간</div><div>40~80시간</div><div class="ct-good">0시간 (보고만)</div></div>
+      <div class="ct-row"><div>로직 대응</div><div>개인 학습 필요</div><div class="ct-good">즉시 반영</div></div>
+      <div class="ct-row"><div>의료광고 심의</div><div>위험 높음</div><div class="ct-good">전담 검수</div></div>
+      <div class="ct-row"><div>콘텐츠 품질</div><div>편차 큼</div><div class="ct-good">일관된 전문성</div></div>
+      <div class="ct-row"><div>성과 추적</div><div>데이터 부재</div><div class="ct-good">월간 리포트</div></div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">06 / 15</span></div>
+</section>
+
+<!-- S07 -->
+<section class="slide" id="s7">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">성과 타임라인</span></div>
+  <div class="slide-content" style="background:var(--white);">
+    <h2 class="slide-h2 rv d1">6개월 <em>J커브</em> 로드맵</h2>
+    <p class="sub-p rv d2">시작 후 평균 6개월, 검색 상단을 장악합니다</p>
+    <div class="timeline rv d3">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">1개월</div>
+        <div class="tl-title">기반 구축</div>
+        <div class="tl-desc">브랜드블로그 세팅, 원장 인터뷰, 키워드 전략 수립</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">2~3개월</div>
+        <div class="tl-title">콘텐츠 누적</div>
+        <div class="tl-desc">월 20~30편 발행, 롱테일 키워드 상위 진입 시작</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">4~5개월</div>
+        <div class="tl-title">플레이스 연동</div>
+        <div class="tl-desc">블로그 점유율 + 플레이스 상위 → 복합 노출 폭발</div>
+      </div>
+      <div class="tl-item tl-highlight">
+        <div class="tl-dot"></div>
+        <div class="tl-month">6개월+</div>
+        <div class="tl-title">J커브 구간</div>
+        <div class="tl-desc">신환 유입 가속화 · ROAS 1,000%+ 달성 구간 진입</div>
+      </div>
+    </div>
+    <div class="tip-box rv d4">📌 광고비 없이 검색 1위 — 이것이 블로그+플레이스 복합 전략의 핵심 가치입니다.</div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">07 / 15</span></div>
+</section>
+
+<!-- S08 -->
+<section class="slide" id="s8">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 04</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q4</div>
+    <div class="faq-tag rv d1">FAQ 04</div>
+    <h2 class="slide-h2 rv d2">성과가 언제부터 나오나요?<br>바로 효과가 있나요?</h2>
+    <div class="ans rv d3"><div class="ans-lbl">✅ A.</div><p><strong>블로그는 3개월, 플레이스는 1~2개월이 변곡점입니다. 단, 꾸준함이 핵심입니다.</strong></p></div>
+    <div class="fcards rv d4">
+      <div class="fc"><div class="fc-icon">📅</div><div class="fc-title">블로그 (3개월)</div><div class="fc-desc">1~2개월: 키워드 인덱싱 · 3개월: 롱테일 상위 진입 · 6개월: 핵심 키워드 상단 점유 시작</div></div>
+      <div class="fc"><div class="fc-icon">📍</div><div class="fc-title">플레이스 (1~2개월)</div><div class="fc-desc">리뷰 전략 + 사진 최적화 + 키워드 세팅으로 빠르게 상위권 진입 가능</div></div>
+      <div class="fc"><div class="fc-icon">💰</div><div class="fc-title">ROI 기준</div><div class="fc-desc">평균 6개월 시점 ROAS 1,000%+ · 파워링크 대비 CPC 1/50 수준의 효율 달성</div></div>
+    </div>
+    <div class="quote-box rv d5">"3개월이 힘든 구간입니다. 하지만 이 구간을 넘긴 병원은 광고비 없이 신환을 받는 구조가 됩니다."</div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">08 / 15</span></div>
+</section>
+
+<!-- S09 -->
+<section class="slide" id="s9">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 05</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q5</div>
+    <div class="faq-tag rv d1">FAQ 05</div>
+    <h2 class="slide-h2 rv d2">우리 병원은 경쟁이 너무 심한데<br>블로그가 통할까요?</h2>
+    <div class="ans rv d3"><div class="ans-lbl">✅ A.</div><p><strong>경쟁이 심할수록 블로그+플레이스 복합 전략의 진입 장벽이 높아져, 선점 효과가 극대화됩니다.</strong></p></div>
+    <div class="fcards rv d4">
+      <div class="fc"><div class="fc-icon">🥇</div><div class="fc-title">선점의 법칙</div><div class="fc-desc">검색 상단은 누가 먼저 신뢰 자산을 쌓느냐의 싸움. 경쟁 병원이 아직 브랜드블로그가 없다면, 지금이 골든타임입니다.</div></div>
+      <div class="fc"><div class="fc-icon">🔍</div><div class="fc-title">틈새 키워드 전략</div><div class="fc-desc">핵심 키워드 외 지역+증상+진료과 조합의 롱테일 키워드 1,000개+ 동시 공략으로 상위 점유 가능</div></div>
+      <div class="fc"><div class="fc-icon">📊</div><div class="fc-title">경쟁사 분석 포함</div><div class="fc-desc">착수 시 경쟁 병원 블로그·플레이스 현황 분석 리포트를 제공해 차별화 전략을 함께 설계합니다.</div></div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">09 / 15</span></div>
+</section>
+
+<!-- S10 -->
+<section class="slide" id="s10">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 06</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q6</div>
+    <div class="faq-tag rv d1">FAQ 06</div>
+    <h2 class="slide-h2 rv d2">블로그 말고 인스타그램이나<br>유튜브는 어떤가요?</h2>
+    <div class="ans rv d3"><div class="ans-lbl">✅ A.</div><p><strong>SNS는 브랜딩 보조 수단입니다. 내원을 직접 만드는 검색 기반 매체는 블로그+플레이스가 압도적입니다.</strong></p></div>
+    <div class="compare-table rv d4">
+      <div class="ct-head"><div>매체</div><div>검색 유입</div><div>내원 전환</div><div>유지 자산</div></div>
+      <div class="ct-row"><div>브랜드블로그</div><div class="ct-good">★★★★★</div><div class="ct-good">★★★★★</div><div class="ct-good">영구 누적</div></div>
+      <div class="ct-row"><div>네이버 플레이스</div><div class="ct-good">★★★★★</div><div class="ct-good">★★★★☆</div><div class="ct-good">지속 유지</div></div>
+      <div class="ct-row"><div>인스타그램</div><div>★★☆☆☆</div><div>★★★☆☆</div><div>알고리즘 의존</div></div>
+      <div class="ct-row"><div>유튜브</div><div>★★★☆☆</div><div>★★★☆☆</div><div>제작 비용 高</div></div>
+      <div class="ct-row"><div>파워링크(광고)</div><div>★★★★☆</div><div>★★★☆☆</div><div>비용 소진형</div></div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">10 / 15</span></div>
+</section>
+
+<!-- S11 -->
+<section class="slide" id="s11">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 07</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q7</div>
+    <div class="faq-tag rv d1">FAQ 07</div>
+    <h2 class="slide-h2 rv d2">계약 기간이 있나요?<br>중도 해지 시 어떻게 되나요?</h2>
+    <div class="ans rv d3"><div class="ans-lbl">✅ A.</div><p><strong>최소 3개월 약정이며, 이후 월 단위 연장입니다. 중도 해지 시 기 제작된 콘텐츠는 모두 원장님 소유입니다.</strong></p></div>
+    <div class="fcards rv d4">
+      <div class="fc"><div class="fc-icon">📋</div><div class="fc-title">계약 구조</div><div class="fc-desc">기본 3개월 약정 → 이후 1개월 단위 자동 연장 · 해지 30일 전 통보 조건</div></div>
+      <div class="fc"><div class="fc-icon">🔒</div><div class="fc-title">콘텐츠 소유권</div><div class="fc-desc">계약 기간 중 제작된 모든 포스팅은 원장님 블로그에 귀속 — 해지 후에도 자산으로 유지됩니다.</div></div>
+      <div class="fc"><div class="fc-icon">🤝</div><div class="fc-title">파트너십 철학</div><div class="fc-desc">성과로 증명하는 장기 파트너십 지향 — 강제 Lock-in 없이 결과로 신뢰를 쌓습니다.</div></div>
+    </div>
+    <div class="tip-box rv d5">💡 3개월이 지나면 대부분의 원장님이 자발적으로 연장하십니다 — 데이터가 증명하는 성과 때문입니다.</div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">11 / 15</span></div>
+</section>
+
+<!-- S12 -->
+<section class="slide" id="s12">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">요금 안내 · 블로그</span></div>
+  <div class="slide-content" style="background:var(--white);">
+    <h2 class="slide-h2 rv d1">브랜드블로그 <em>요금 안내</em></h2>
+    <p class="sub-p rv d2">투명한 구조, 숨겨진 비용 없음</p>
+    <div class="price-grid rv d3">
+      <div class="pc">
+        <div class="pc-name">STARTER</div>
+        <div class="pc-price">월 <strong>120만원</strong></div>
+        <div class="pc-desc">월 15편 · 기본 키워드 전략 · 월간 리포트</div>
+        <ul class="pc-list">
+          <li>원장 인터뷰 기반 포스팅</li>
+          <li>의료광고 심의 검수</li>
+          <li>월 성과 리포트</li>
+        </ul>
+      </div>
+      <div class="pc featured">
+        <div class="pc-badge">추천</div>
+        <div class="pc-name">STANDARD</div>
+        <div class="pc-price">월 <strong>200만원</strong></div>
+        <div class="pc-desc">월 25편 · 심층 키워드 전략 · 경쟁사 분석</div>
+        <ul class="pc-list">
+          <li>STARTER 전체 포함</li>
+          <li>경쟁사 현황 분석</li>
+          <li>플레이스 연동 기획</li>
+          <li>A/B 콘텐츠 테스트</li>
+        </ul>
+      </div>
+      <div class="pc">
+        <div class="pc-name">PREMIUM</div>
+        <div class="pc-price">월 <strong>350만원</strong></div>
+        <div class="pc-desc">월 40편 · 전담 PM · 플레이스 통합 관리</div>
+        <ul class="pc-list">
+          <li>STANDARD 전체 포함</li>
+          <li>전담 PM 배정</li>
+          <li>플레이스 통합 운영</li>
+          <li>주간 성과 리포트</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-box rv d4">📌 초기 세팅비 별도 (1회 50만원) · 부가세 별도 · 3개월 약정 후 월 단위 연장</div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">12 / 15</span></div>
+</section>
+
+<!-- S13 -->
+<section class="slide" id="s13">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">요금 안내 · 플레이스</span></div>
+  <div class="slide-content" style="background:var(--white);">
+    <h2 class="slide-h2 rv d1">네이버 플레이스 <em>요금 안내</em></h2>
+    <p class="sub-p rv d2">블로그와 함께 시너지를 내는 플레이스 최적화</p>
+    <div class="price-grid rv d3">
+      <div class="pc">
+        <div class="pc-name">BASIC</div>
+        <div class="pc-price">월 <strong>70만원</strong></div>
+        <div class="pc-desc">플레이스 기본 최적화 · 리뷰 관리</div>
+        <ul class="pc-list">
+          <li>프로필·사진 최적화</li>
+          <li>키워드 태그 세팅</li>
+          <li>리뷰 응대 관리</li>
+        </ul>
+      </div>
+      <div class="pc featured">
+        <div class="pc-badge">추천</div>
+        <div class="pc-name">PRO</div>
+        <div class="pc-price">월 <strong>120만원</strong></div>
+        <div class="pc-desc">플레이스 상위 점유 · 블로그 연동</div>
+        <ul class="pc-list">
+          <li>BASIC 전체 포함</li>
+          <li>블로그 포스팅 연동</li>
+          <li>경쟁사 순위 모니터링</li>
+          <li>월 성과 리포트</li>
+        </ul>
+      </div>
+      <div class="pc">
+        <div class="pc-name">BUNDLE</div>
+        <div class="pc-price">블로그+플레이스<br><strong>할인 패키지</strong></div>
+        <div class="pc-desc">두 채널 통합 운영 시 20% 할인</div>
+        <ul class="pc-list">
+          <li>통합 키워드 전략</li>
+          <li>채널 간 콘텐츠 연동</li>
+          <li>단일 PM 통합 관리</li>
+          <li>최고 ROI 달성 구조</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-box rv d4">💡 블로그+플레이스 번들 시 단독 합산 대비 월 40~70만원 절약 — 문의 시 맞춤 견적 제공</div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">13 / 15</span></div>
+</section>
+
+<!-- S14 -->
+<section class="slide" id="s14">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">FAQ 09</span></div>
+  <div class="slide-content" style="background:var(--white);position:relative;">
+    <div class="ghost-num">Q9</div>
+    <div class="faq-tag rv d1">FAQ 09</div>
+    <h2 class="slide-h2 rv d2">다른 병원 사례를<br>볼 수 있나요?</h2>
+    <div class="ans rv d3"><div class="ans-lbl">✅ A.</div><p><strong>네, 상담 시 진료과별 실제 성과 데이터와 상위노출 사례를 직접 보여드립니다.</strong></p></div>
+    <div class="fcards rv d4">
+      <div class="fc"><div class="fc-icon">🏥</div><div class="fc-title">내과 A 원장</div><div class="fc-desc">6개월 만에 월 신환 18명 → 67명. 파워링크 완전 중단 후에도 유입 유지. 블로그 키워드 상위 점유 312개.</div></div>
+      <div class="fc"><div class="fc-icon">🦴</div><div class="fc-title">정형외과 B 원장</div><div class="fc-desc">플레이스+블로그 번들 3개월 → 지역 검색 1위. 월 리뷰 평균 35건 달성. 내원 문의 2.3배 증가.</div></div>
+      <div class="fc"><div class="fc-icon">💆</div><div class="fc-title">피부과 C 원장</div><div class="fc-desc">경쟁 심화 상권에서 브랜드블로그 6개월 운영 → 핵심 키워드 1페이지 점유 5개. ROAS 1,200% 달성.</div></div>
+    </div>
+    <div class="quote-box rv d5">"상담 시 원장님 진료과에 맞는 실제 레퍼런스를 보여드립니다. 숫자가 말합니다."</div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">14 / 15</span></div>
+</section>
+
+<!-- S15 -->
+<section class="slide" id="s15">
+  <div class="hdr"><span class="hdr-brand">마케팅천재</span><span class="hdr-tag">지금 시작하세요</span></div>
+  <div class="slide-content cta-split" style="padding:0;">
+    <div class="cta-left rv d1">
+      <div class="cta-logo">마케팅천재</div>
+      <p class="cta-tagline">병원 마케팅,<br>이제 <em>전문가</em>에게<br>맡기세요.</p>
+      <p class="cta-sub">브랜드블로그 × 네이버 플레이스<br>복합 전략으로 신환을 만듭니다</p>
+    </div>
+    <div class="cta-right rv d2">
+      <p class="cta-label">무료 전략 상담 신청</p>
+      <div class="cta-contact">
+        <div class="cc-item">📞 <strong>010-XXXX-XXXX</strong></div>
+        <div class="cc-item">💬 카카오톡 <strong>@마케팅천재</strong></div>
+        <div class="cc-item">📧 <strong>contact@mkgenius.kr</strong></div>
+      </div>
+      <div class="cta-benefits rv d3">
+        <div class="cb">✅ 경쟁사 분석 리포트 무료 제공</div>
+        <div class="cb">✅ 키워드 진단 무료 제공</div>
+        <div class="cb">✅ 상담 후 미진행 시 비용 없음</div>
+      </div>
+      <div class="cta-urgency rv d4">⏰ 이번 달 신규 계약 3개 병원 한정 — 지금 문의하세요</div>
+    </div>
+  </div>
+  <div class="ftr"><span class="ftr-txt">마케팅천재 · 대표 정귀명</span><span class="ftr-num">15 / 15</span></div>
+</section>
+
+</main>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="nav-dots" id="navDots"></div>
+
+<script>
+class SlidePresentation {
+  constructor() {
+    this.slides = document.querySelectorAll('.slide');
+    this.total = this.slides.length;
+    this.current = 0;
+    this.isScrolling = false;
+    this.touchStartY = 0;
+    this.progressFill = document.getElementById('progressFill');
+    this.navDotsContainer = document.getElementById('navDots');
+    this.buildDots();
+    this.setupObserver();
+    this.setupEvents();
+    this.update(0);
+  }
+
+  buildDots() {
+    for (let i = 0; i < this.total; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot';
+      d.addEventListener('click', () => this.goTo(i));
+      this.navDotsContainer.appendChild(d);
+    }
+  }
+
+  setupObserver() {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.querySelectorAll('.rv,.rl,.rs').forEach(r => r.classList.add('visible'));
+          const idx = Array.from(this.slides).indexOf(el.target);
+          if (idx !== -1) this.update(idx);
+        }
+      });
+    }, { threshold: 0.5 });
+    this.slides.forEach(s => obs.observe(s));
+  }
+
+  setupEvents() {
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); this.next(); }
+      if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); this.prev(); }
+    });
+    document.addEventListener('wheel', e => {
+      e.preventDefault();
+      if (this.isScrolling) return;
+      this.isScrolling = true;
+      if (e.deltaY > 30) this.next();
+      else if (e.deltaY < -30) this.prev();
+      setTimeout(() => this.isScrolling = false, 900);
+    }, { passive: false });
+    document.addEventListener('touchstart', e => { this.touchStartY = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', e => {
+      const dy = this.touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(dy) > 50) { dy > 0 ? this.next() : this.prev(); }
+    });
+  }
+
+  goTo(idx) {
+    if (idx < 0 || idx >= this.total) return;
+    this.slides[idx].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  next() { this.goTo(this.current + 1); }
+  prev() { this.goTo(this.current - 1); }
+
+  update(idx) {
+    this.current = idx;
+    this.progressFill.style.width = ((idx + 1) / this.total * 100) + '%';
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => new SlidePresentation());
+</script>
+</body>
+</html>
