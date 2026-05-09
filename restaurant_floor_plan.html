@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>고기집 1층 평면도 초안</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #d0d0d0;
+  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', Arial, sans-serif;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+h1 {
+  font-size: 16px;
+  color: #222;
+  letter-spacing: 1px;
+}
+.paper {
+  background: white;
+  padding: 40px 50px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.35);
+  border: 1px solid #aaa;
+}
+svg { display: block; }
+.info-box {
+  background: white;
+  padding: 20px 30px;
+  max-width: 1000px;
+  width: 100%;
+  border-left: 4px solid #c0392b;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #333;
+}
+.info-box h3 { margin-bottom: 10px; color: #c0392b; font-size: 14px; }
+.flow-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+.flow-icon { font-size: 16px; width: 20px; flex-shrink: 0; }
+.note { margin-top: 14px; padding: 10px; background: #fff8e1; border-radius: 4px; font-size: 12px; color: #7f6000; }
+</style>
+</head>
+<body>
+<h1>고기집 1층 평면도 초안 &nbsp;|&nbsp; 숯불 12테이블 완전분리주방</h1>
+
+<div class="paper">
+<svg width="1000" height="940" viewBox="-80 -80 1360 1290" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+  <!-- 숯창고 해치 패턴 -->
+  <pattern id="ph-charcoal" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
+    <rect width="10" height="10" fill="#bbb"/>
+    <rect width="4" height="10" fill="#888"/>
+  </pattern>
+  <!-- 벽체 패턴 -->
+  <pattern id="ph-wall" patternUnits="userSpaceOnUse" width="6" height="6">
+    <rect width="6" height="6" fill="#444"/>
+  </pattern>
+  <!-- 타일 패턴 (주방 바닥) -->
+  <pattern id="ph-tile" patternUnits="userSpaceOnUse" width="30" height="30">
+    <rect width="30" height="30" fill="#fdf6e3" stroke="#e8dcc0" stroke-width="0.7"/>
+  </pattern>
+  <!-- 홀 바닥 패턴 -->
+  <pattern id="ph-hall" patternUnits="userSpaceOnUse" width="40" height="40">
+    <rect width="40" height="40" fill="#f7f3ee" stroke="#e5ddd0" stroke-width="0.5"/>
+  </pattern>
+  <!-- 화살표 마커 -->
+  <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L8,3 z" fill="#e67e22"/>
+  </marker>
+  <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L8,3 z" fill="#2980b9"/>
+  </marker>
+  <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L8,3 z" fill="#27ae60"/>
+  </marker>
+</defs>
+
+<!-- ========== 바닥 배경 ========== -->
+<rect x="0" y="0" width="1200" height="1130" fill="#f0ebe3"/>
+
+<!-- 주방 바닥 (타일) -->
+<rect x="18" y="18" width="414" height="444" fill="url(#ph-tile)"/>
+
+<!-- 홀 바닥 (원목/마루) -->
+<rect x="432" y="18" width="750" height="1094" fill="url(#ph-hall)"/>
+<rect x="18" y="462" width="414" height="650" fill="url(#ph-hall)"/>
+
+<!-- 화장실/창고 바닥 -->
+<rect x="950" y="18" width="232" height="444" fill="#e8f0e8"/>
+
+<!-- ========== 외벽 (두께 18) ========== -->
+<g fill="#333" stroke="none">
+  <rect x="0" y="0" width="1200" height="18"/>       <!-- 북벽 -->
+  <rect x="0" y="1112" width="1200" height="18"/>    <!-- 남벽 -->
+  <rect x="0" y="0" width="18" height="1130"/>       <!-- 서벽 -->
+  <rect x="1182" y="0" width="18" height="1130"/>    <!-- 동벽 -->
+</g>
+
+<!-- ========== 내벽 ========== -->
+<g fill="#555" stroke="none">
+  <!-- 주방 동벽 (주방↔홀 분리) -->
+  <rect x="430" y="18" width="12" height="444"/>
+  <!-- 주방 남벽 (주방↔홀 분리) -->
+  <rect x="18" y="450" width="424" height="12"/>
+  <!-- 주방 내부 - 숯창고 동벽 -->
+  <rect x="200" y="18" width="10" height="280"/>
+  <!-- 주방 내부 - 숯창고 남벽 -->
+  <rect x="18" y="294" width="192" height="10"/>
+  <!-- 주방 내부 - 냉장/냉동 남벽 -->
+  <rect x="210" y="148" width="230" height="10"/>
+  <!-- 주방 내부 - 세척/준비 구분 -->
+  <rect x="310" y="158" width="10" height="155"/>
+  <!-- 픽업카운터 (주방 남벽 내측 카운터) -->
+  <!-- (카운터는 가구로 표현) -->
+
+  <!-- 화장실 서벽 -->
+  <rect x="948" y="18" width="12" height="444"/>
+  <!-- 화장실 남벽 -->
+  <rect x="948" y="298" width="246" height="12"/>
+  <!-- 화장실 중간 칸막이 (남/여 구분) -->
+  <rect x="1075" y="18" width="10" height="280"/>
+  <!-- 직원실 남벽 -->
+  <rect x="948" y="455" width="246" height="12"/>
+  <!-- 직원실 서벽 -->
+  <rect x="948" y="298" width="12" height="169"/>
+
+  <!-- 입구 쪽 홀 구분선 (선택) -->
+  <rect x="432" y="1010" width="336" height="10"/>
+  <rect x="432" y="1010" width="10" height="102"/>
+  <rect x="758" y="1010" width="10" height="102"/>
+</g>
+
+<!-- ========== 납품용 후문 (북벽 열개) ========== -->
+<rect x="55" y="0" width="100" height="18" fill="white" stroke="#555" stroke-width="1"/>
+<text x="105" y="14" text-anchor="middle" font-size="9" fill="#555">납품문</text>
+<!-- 문 개폐 호 -->
+<path d="M 55 18 Q 105 55 155 18" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="4,2"/>
+
+<!-- ========== 주방 내부 장비 ========== -->
+
+<!-- 숯보관창고 + 점화실 -->
+<rect x="18" y="18" width="174" height="270" fill="url(#ph-charcoal)" stroke="#666" stroke-width="1.5" opacity="0.85"/>
+<text x="105" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="white">숯 보관창고</text>
+<text x="105" y="122" text-anchor="middle" font-size="9" fill="#eee">1,740 × 2,700</text>
+<!-- 점화 스테이션 (빨간 박스) -->
+<rect x="30" y="185" width="80" height="90" fill="#c0392b" opacity="0.75" rx="3" stroke="#922b21" stroke-width="1"/>
+<text x="70" y="222" text-anchor="middle" font-size="9" font-weight="bold" fill="white">숯 점화</text>
+<text x="70" y="237" text-anchor="middle" font-size="9" fill="white">스테이션</text>
+<text x="70" y="252" text-anchor="middle" font-size="8" fill="#ffdddd">(후드 직결)</text>
+<!-- 숯 보관 박스 symbol -->
+<rect x="125" y="195" width="55" height="70" rx="2" fill="#7f8c8d" stroke="#5d6d6e" stroke-width="1"/>
+<text x="152" y="224" text-anchor="middle" font-size="8" fill="white">보관함</text>
+<text x="152" y="237" text-anchor="middle" font-size="8" fill="#ddd">×3단</text>
+
+<!-- 냉장 -->
+<rect x="210" y="18" width="110" height="122" fill="#d6eaf8" stroke="#1a6fa3" stroke-width="1.5" rx="2"/>
+<text x="265" y="65" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a5276">냉 장</text>
+<text x="265" y="82" text-anchor="middle" font-size="9" fill="#1a5276">1,100×1,220</text>
+<text x="265" y="97" text-anchor="middle" font-size="8" fill="#2874a6">업소용 2구</text>
+<!-- 냉장 손잡이 -->
+<line x1="210" y1="70" x2="220" y2="70" stroke="#1a6fa3" stroke-width="3"/>
+
+<!-- 냉동 -->
+<rect x="328" y="18" width="92" height="122" fill="#d5d8dc" stroke="#566573" stroke-width="1.5" rx="2"/>
+<text x="374" y="65" text-anchor="middle" font-size="11" font-weight="bold" fill="#2c3e50">냉 동</text>
+<text x="374" y="82" text-anchor="middle" font-size="9" fill="#2c3e50">920×1,220</text>
+<text x="374" y="97" text-anchor="middle" font-size="8" fill="#566573">업소용 1구</text>
+
+<!-- 조리/준비대 (서벽 따라 L형) -->
+<!-- 숯창고 남쪽 ~ 픽업카운터 북쪽 -->
+<rect x="18" y="310" width="172" height="55" fill="#fef9e7" stroke="#ca8a04" stroke-width="1.5" rx="2"/>
+<text x="104" y="332" text-anchor="middle" font-size="10" font-weight="bold" fill="#6d4c01">조리 준비대</text>
+<text x="104" y="348" text-anchor="middle" font-size="8" fill="#8b6914">1,720 × 550</text>
+
+<!-- 반찬 준비대 -->
+<rect x="18" y="372" width="172" height="50" fill="#f5eef8" stroke="#7d3c98" stroke-width="1.5" rx="2"/>
+<text x="104" y="393" text-anchor="middle" font-size="10" font-weight="bold" fill="#6c3483">반찬 준비대</text>
+<text x="104" y="408" text-anchor="middle" font-size="8" fill="#7d3c98">1,720 × 500</text>
+
+<!-- 세척 구역 (싱크 2구) -->
+<rect x="210" y="158" width="93" height="145" fill="#d1f2eb" stroke="#0e8a6b" stroke-width="1.5" rx="2"/>
+<text x="256" y="215" text-anchor="middle" font-size="10" font-weight="bold" fill="#0e8a6b">세 척</text>
+<text x="256" y="230" text-anchor="middle" font-size="9" fill="#0e8a6b">구 역</text>
+<!-- 싱크 심볼 -->
+<rect x="218" y="163" width="37" height="30" rx="4" fill="white" stroke="#0e8a6b" stroke-width="1"/>
+<rect x="260" y="163" width="37" height="30" rx="4" fill="white" stroke="#0e8a6b" stroke-width="1"/>
+<circle cx="236" cy="178" r="4" fill="none" stroke="#0e8a6b" stroke-width="1"/>
+<circle cx="278" cy="178" r="4" fill="none" stroke="#0e8a6b" stroke-width="1"/>
+<text x="256" y="267" text-anchor="middle" font-size="8" fill="#0e8a6b">930×1,450</text>
+
+<!-- 식기 보관대 -->
+<rect x="320" y="158" width="100" height="145" fill="#eafaf1" stroke="#1e8449" stroke-width="1.5" rx="2"/>
+<text x="370" y="222" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449">식기</text>
+<text x="370" y="238" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e8449">보관</text>
+<text x="370" y="260" text-anchor="middle" font-size="8" fill="#1e8449">1,000×1,450</text>
+
+<!-- 반찬 작업대 (동쪽 벽 따라) -->
+<rect x="210" y="310" width="210" height="130" fill="#fef9e7" stroke="#ca8a04" stroke-width="1.5" rx="2"/>
+<text x="315" y="363" text-anchor="middle" font-size="10" font-weight="bold" fill="#6d4c01">반찬 / 소스 작업대</text>
+<text x="315" y="380" text-anchor="middle" font-size="8" fill="#8b6914">2,100 × 1,300</text>
+<!-- 선반 심볼 -->
+<line x1="210" y1="335" x2="420" y2="335" stroke="#ca8a04" stroke-width="0.8" stroke-dasharray="4,3"/>
+<line x1="210" y1="355" x2="420" y2="355" stroke="#ca8a04" stroke-width="0.8" stroke-dasharray="4,3"/>
+
+<!-- ========== 픽업 카운터 ========== -->
+<rect x="18" y="425" width="404" height="25" fill="#fdebd0" stroke="#c0392b" stroke-width="2"/>
+<!-- Pass Window 1 -->
+<rect x="90" y="425" width="90" height="25" fill="white" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="135" y="437" text-anchor="middle" font-size="8" font-weight="bold" fill="#c0392b">PASS ①</text>
+<!-- Pass Window 2 -->
+<rect x="260" y="425" width="90" height="25" fill="white" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="305" y="437" text-anchor="middle" font-size="8" font-weight="bold" fill="#c0392b">PASS ②</text>
+<text x="50" y="440" text-anchor="middle" font-size="9" font-weight="bold" fill="#a93226">픽업 카운터</text>
+
+<!-- ========== 주방 구역 레이블 ========== -->
+<text x="215" y="490" text-anchor="middle" font-size="14" font-weight="bold" fill="#c0392b" opacity="0.25" transform="rotate(-90,215,490)">주 방 (4,300×4,600)</text>
+
+<!-- ========== 화장실 ========== -->
+<!-- 남자 화장실 -->
+<rect x="960" y="18" width="108" height="272" fill="#e8f8e8" stroke="#555" stroke-width="1"/>
+<text x="1014" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d7a2d">남</text>
+<text x="1014" y="148" text-anchor="middle" font-size="10" fill="#2d7a2d">화장실</text>
+<!-- 변기 -->
+<rect x="980" y="230" width="40" height="50" rx="6" fill="white" stroke="#555" stroke-width="1"/>
+<rect x="985" y="225" width="30" height="10" rx="2" fill="white" stroke="#555" stroke-width="0.8"/>
+<!-- 세면대 -->
+<ellipse cx="1050" cy="245" rx="18" ry="14" fill="white" stroke="#555" stroke-width="1"/>
+<!-- 소변기 -->
+<rect x="990" y="175" width="25" height="30" rx="4" fill="white" stroke="#555" stroke-width="1"/>
+
+<!-- 여자 화장실 -->
+<rect x="1085" y="18" width="97" height="272" fill="#fce4ec" stroke="#555" stroke-width="1"/>
+<text x="1134" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2185b">여</text>
+<text x="1134" y="148" text-anchor="middle" font-size="10" fill="#c2185b">화장실</text>
+<!-- 변기 -->
+<rect x="1100" y="210" width="40" height="50" rx="6" fill="white" stroke="#555" stroke-width="1"/>
+<rect x="1105" y="205" width="30" height="10" rx="2" fill="white" stroke="#555" stroke-width="0.8"/>
+<!-- 세면대 -->
+<ellipse cx="1140" cy="175" rx="16" ry="12" fill="white" stroke="#555" stroke-width="1"/>
+
+<!-- 화장실 문 -->
+<rect x="960" y="270" width="50" height="10" fill="white" stroke="#555"/>
+<path d="M960 280 Q985 310 1010 280" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
+
+<!-- ========== 직원 휴게실 ========== -->
+<rect x="960" y="310" width="222" height="137" fill="#f9ebff" stroke="#555" stroke-width="1"/>
+<text x="1071" y="370" text-anchor="middle" font-size="11" font-weight="bold" fill="#6a1b9a">직원 휴게실</text>
+<text x="1071" y="388" text-anchor="middle" font-size="9" fill="#7b1fa2">2,220 × 1,370</text>
+<!-- 소파 심볼 -->
+<rect x="975" y="340" width="80" height="35" rx="4" fill="#ce93d8" stroke="#7b1fa2" stroke-width="0.8"/>
+<rect x="975" y="375" width="80" height="15" rx="3" fill="#ba68c8" stroke="#7b1fa2" stroke-width="0.8"/>
+
+<!-- ========== 홀 서버스테이션 ========== -->
+<rect x="443" y="462" width="85" height="55" fill="#fef5e4" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+<text x="486" y="482" text-anchor="middle" font-size="9" font-weight="bold" fill="#6d4c01">서버</text>
+<text x="486" y="496" text-anchor="middle" font-size="9" fill="#6d4c01">스테이션</text>
+<text x="486" y="510" text-anchor="middle" font-size="7" fill="#8b6914">850×550</text>
+
+<!-- ========== 테이블 12개 배치 ========== -->
+<!--
+  테이블 크기: 900×900mm = 90×90 SVG
+  의자 반경: 14
+  그릴 반경: 25 (점선)
+
+  Row A (y=65~155): 우측홀 상단 3개
+  Row B (y=235~325): 우측홀 중단 3개
+  Row C (y=550~640): 하단 홀 좌측 4개
+  Row D (y=750~840): 하단 홀 좌측 2개 + 우측 홀 하단 2개
+-->
+
+<!-- 테이블 공통 컬러 -->
+<!-- 테이블: #fff8dc, 의자: #d2b48c, 그릴 점선: #c0392b -->
+
+<!-- ===== ROW A - 상단 우측 홀 (y=65~155) ===== -->
+<!-- Table 01 -->
+<g>
+  <rect x="468" y="65" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="513" cy="53" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="513" cy="167" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="455" cy="110" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="571" cy="110" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="513" cy="110" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="513" y="104" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="513" y="116" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="513" y="155" text-anchor="middle" font-size="8" fill="#888">T01</text>
+</g>
+
+<!-- Table 02 -->
+<g>
+  <rect x="645" y="65" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="690" cy="53" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="690" cy="167" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="632" cy="110" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="748" cy="110" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="690" cy="110" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="690" y="104" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="690" y="116" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="690" y="155" text-anchor="middle" font-size="8" fill="#888">T02</text>
+</g>
+
+<!-- Table 03 -->
+<g>
+  <rect x="820" y="65" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="865" cy="53" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="865" cy="167" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="807" cy="110" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="923" cy="110" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="865" cy="110" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="865" y="104" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="865" y="116" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="865" y="155" text-anchor="middle" font-size="8" fill="#888">T03</text>
+</g>
+
+<!-- ===== ROW B - 중단 우측 홀 (y=240~330) ===== -->
+<!-- Table 04 -->
+<g>
+  <rect x="468" y="240" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="513" cy="228" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="513" cy="342" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="455" cy="285" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="571" cy="285" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="513" cy="285" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="513" y="279" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="513" y="291" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="513" y="330" text-anchor="middle" font-size="8" fill="#888">T04</text>
+</g>
+
+<!-- Table 05 -->
+<g>
+  <rect x="645" y="240" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="690" cy="228" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="690" cy="342" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="632" cy="285" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="748" cy="285" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="690" cy="285" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="690" y="279" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="690" y="291" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="690" y="330" text-anchor="middle" font-size="8" fill="#888">T05</text>
+</g>
+
+<!-- Table 06 -->
+<g>
+  <rect x="820" y="240" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="865" cy="228" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="865" cy="342" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="807" cy="285" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="923" cy="285" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="865" cy="285" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="865" y="279" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="865" y="291" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="865" y="330" text-anchor="middle" font-size="8" fill="#888">T06</text>
+</g>
+
+<!-- ===== ROW C - 하단 홀 (y=540~630), 4개 ===== -->
+<!-- Table 07 -->
+<g>
+  <rect x="55" y="540" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="100" cy="528" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="100" cy="642" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="42" cy="585" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="158" cy="585" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="100" cy="585" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="100" y="579" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="100" y="591" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="100" y="630" text-anchor="middle" font-size="8" fill="#888">T07</text>
+</g>
+
+<!-- Table 08 -->
+<g>
+  <rect x="240" y="540" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="285" cy="528" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="285" cy="642" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="227" cy="585" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="343" cy="585" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="285" cy="585" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="285" y="579" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="285" y="591" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="285" y="630" text-anchor="middle" font-size="8" fill="#888">T08</text>
+</g>
+
+<!-- Table 09 -->
+<g>
+  <rect x="468" y="540" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="513" cy="528" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="513" cy="642" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="455" cy="585" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="571" cy="585" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="513" cy="585" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="513" y="579" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="513" y="591" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="513" y="630" text-anchor="middle" font-size="8" fill="#888">T09</text>
+</g>
+
+<!-- Table 10 -->
+<g>
+  <rect x="645" y="540" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="690" cy="528" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="690" cy="642" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="632" cy="585" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="748" cy="585" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="690" cy="585" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="690" y="579" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="690" y="591" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="690" y="630" text-anchor="middle" font-size="8" fill="#888">T10</text>
+</g>
+
+<!-- ===== ROW D - 최하단 (y=760~850), 2개 ===== -->
+<!-- Table 11 -->
+<g>
+  <rect x="55" y="760" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="100" cy="748" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="100" cy="862" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="42" cy="805" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="158" cy="805" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="100" cy="805" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="100" y="799" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="100" y="811" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="100" y="850" text-anchor="middle" font-size="8" fill="#888">T11</text>
+</g>
+
+<!-- Table 12 -->
+<g>
+  <rect x="240" y="760" width="90" height="90" fill="#fff8dc" stroke="#8b6914" stroke-width="1.5" rx="3"/>
+  <circle cx="285" cy="748" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="285" cy="862" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="227" cy="805" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="343" cy="805" r="13" fill="#d2b48c" stroke="#7a5230" stroke-width="1"/>
+  <circle cx="285" cy="805" r="26" fill="none" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4,2.5"/>
+  <text x="285" y="799" text-anchor="middle" font-size="7" fill="#c0392b">숯불</text>
+  <text x="285" y="811" text-anchor="middle" font-size="7" fill="#c0392b">그릴</text>
+  <text x="285" y="850" text-anchor="middle" font-size="8" fill="#888">T12</text>
+</g>
+
+<!-- ========== 동선 화살표 ========== -->
+<!-- 숯 동선 (주황) -->
+<polyline points="105,18 105,300 105,410 135,425"
+  fill="none" stroke="#e67e22" stroke-width="2" stroke-dasharray="8,4"
+  marker-end="url(#arrow-orange)"/>
+<text x="120" y="370" font-size="9" fill="#e67e22" font-weight="bold">숯 동선</text>
+
+<!-- 식재료 동선 (초록) -->
+<polyline points="270,18 270,50 380,50 380,158"
+  fill="none" stroke="#27ae60" stroke-width="1.8" stroke-dasharray="7,4"
+  marker-end="url(#arrow-green)"/>
+<text x="285" y="95" font-size="8" fill="#27ae60">재료 동선</text>
+
+<!-- 서빙 동선 (파란) -->
+<polyline points="200,437 350,437 440,437 530,437 530,540"
+  fill="none" stroke="#2980b9" stroke-width="1.8" stroke-dasharray="7,4"
+  marker-end="url(#arrow-blue)"/>
+<text x="440" y="430" font-size="9" fill="#2980b9" font-weight="bold">서빙 동선</text>
+
+<!-- 반납/세척 동선 (회색) -->
+<polyline points="442,480 442,480 442,437 290,437 215,437 215,300"
+  fill="none" stroke="#7f8c8d" stroke-width="1.5" stroke-dasharray="5,4"
+  marker-end="url(#arrow-green)"/>
+
+<!-- ========== 주출입구 ========== -->
+<!-- 문 -->
+<rect x="490" y="1112" width="220" height="18" fill="white" stroke="#333" stroke-width="1.5"/>
+<path d="M 490 1112 Q 600 1070 710 1112" fill="none" stroke="#555" stroke-width="1.2" stroke-dasharray="4,3"/>
+<text x="600" y="1107" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">주 출입구</text>
+
+<!-- 홀 내 수직 이동 통로 표시 -->
+<line x1="432" y1="462" x2="432" y2="1010" stroke="#aaa" stroke-width="1" stroke-dasharray="6,4"/>
+
+<!-- ========== 치수선 ========== -->
+<!-- 건물 폭 치수 -->
+<g stroke="#333" stroke-width="0.8" fill="#333">
+  <line x1="0" y1="-55" x2="1200" y2="-55"/>
+  <line x1="0" y1="-60" x2="0" y2="-50"/>
+  <line x1="1200" y1="-60" x2="1200" y2="-50"/>
+  <text x="600" y="-60" text-anchor="middle" font-size="11" font-weight="bold">12,000</text>
+</g>
+<!-- 건물 높이 치수 -->
+<g stroke="#333" stroke-width="0.8" fill="#333">
+  <line x1="-55" y1="0" x2="-55" y2="1130"/>
+  <line x1="-60" y1="0" x2="-50" y2="0"/>
+  <line x1="-60" y1="1130" x2="-50" y2="1130"/>
+  <text x="-62" y="565" text-anchor="middle" font-size="11" font-weight="bold" transform="rotate(-90,-62,565)">11,300</text>
+</g>
+
+<!-- 주방 폭 치수 -->
+<g stroke="#888" stroke-width="0.6" fill="#555" font-size="9">
+  <line x1="0" y1="-30" x2="430" y2="-30"/>
+  <line x1="0" y1="-34" x2="0" y2="-26"/>
+  <line x1="430" y1="-34" x2="430" y2="-26"/>
+  <text x="215" y="-33" text-anchor="middle">4,300 (주방)</text>
+</g>
+<!-- 주방 높이 치수 -->
+<g stroke="#888" stroke-width="0.6" fill="#555" font-size="9">
+  <line x1="-30" y1="0" x2="-30" y2="462"/>
+  <line x1="-34" y1="0" x2="-26" y2="0"/>
+  <line x1="-34" y1="462" x2="-26" y2="462"/>
+  <text x="-35" y="231" text-anchor="middle" transform="rotate(-90,-35,231)">4,620 (주방)</text>
+</g>
+
+<!-- 홀 폭 치수 (우측) -->
+<g stroke="#888" stroke-width="0.6" fill="#555" font-size="9">
+  <line x1="432" y1="-30" x2="950" y2="-30"/>
+  <line x1="432" y1="-34" x2="432" y2="-26"/>
+  <line x1="950" y1="-34" x2="950" y2="-26"/>
+  <text x="691" y="-33" text-anchor="middle">5,180 (홀+화장실복도)</text>
+</g>
+
+<!-- ========== 제목란 ========== -->
+<rect x="0" y="1145" width="1200" height="55" fill="#f8f8f8" stroke="#333" stroke-width="1"/>
+<line x1="800" y1="1145" x2="800" y2="1200" stroke="#333" stroke-width="1"/>
+<line x1="1000" y1="1145" x2="1000" y2="1200" stroke="#333" stroke-width="1"/>
+<text x="400" y="1164" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">고기집 1층 평면도 초안</text>
+<text x="400" y="1184" text-anchor="middle" font-size="10" fill="#555">숯불 / 12테이블 / 완전분리 주방 동선</text>
+<text x="900" y="1168" text-anchor="middle" font-size="10" fill="#555">도면번호</text>
+<text x="900" y="1186" text-anchor="middle" font-size="11" font-weight="bold" fill="#222">A-001 (초안)</text>
+<text x="1100" y="1168" text-anchor="middle" font-size="10" fill="#555">축 척</text>
+<text x="1100" y="1186" text-anchor="middle" font-size="11" font-weight="bold" fill="#222">1:120</text>
+
+<!-- ========== 범례 ========== -->
+<g transform="translate(535, 475)">
+  <rect x="0" y="0" width="395" height="155" fill="white" stroke="#aaa" stroke-width="1" rx="3"/>
+  <text x="10" y="18" font-size="10" font-weight="bold" fill="#333">[ 범 례 ]</text>
+  <!-- 아이템들 -->
+  <rect x="10" y="27" width="14" height="12" fill="url(#ph-charcoal)" stroke="#666"/>
+  <text x="30" y="38" font-size="9" fill="#333">숯 보관/점화실</text>
+  <rect x="10" y="45" width="14" height="12" fill="#d6eaf8" stroke="#1a6fa3"/>
+  <text x="30" y="56" font-size="9" fill="#333">냉장/냉동</text>
+  <rect x="10" y="63" width="14" height="12" fill="#d1f2eb" stroke="#0e8a6b"/>
+  <text x="30" y="74" font-size="9" fill="#333">세척 구역</text>
+  <rect x="10" y="81" width="14" height="12" fill="#fef9e7" stroke="#ca8a04"/>
+  <text x="30" y="92" font-size="9" fill="#333">준비/조리대</text>
+  <rect x="10" y="99" width="14" height="12" fill="#fff8dc" stroke="#8b6914"/>
+  <text x="30" y="110" font-size="9" fill="#333">테이블 (4인)</text>
+  <!-- 동선 범례 -->
+  <line x1="160" y1="33" x2="195" y2="33" stroke="#e67e22" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="200" y="37" font-size="9" fill="#e67e22">숯 이동 동선</text>
+  <line x1="160" y1="53" x2="195" y2="53" stroke="#27ae60" stroke-width="1.8" stroke-dasharray="6,3"/>
+  <text x="200" y="57" font-size="9" fill="#27ae60">식재료 동선</text>
+  <line x1="160" y1="73" x2="195" y2="73" stroke="#2980b9" stroke-width="1.8" stroke-dasharray="6,3"/>
+  <text x="200" y="77" font-size="9" fill="#2980b9">서빙 동선</text>
+  <line x1="160" y1="93" x2="195" y2="93" stroke="#7f8c8d" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="200" y="97" font-size="9" fill="#7f8c8d">반납/세척 동선</text>
+  <!-- 주의 -->
+  <rect x="10" y="118" width="375" height="30" fill="#fff8e1" rx="2"/>
+  <text x="18" y="131" font-size="8" fill="#856404">⚠ 숯불 특성상 테이블 상부 개별 후드 덕트 필수 / CO감지기 설치 의무 (소방법)</text>
+  <text x="18" y="144" font-size="8" fill="#856404">⚠ 숯창고 점화실 — 직배기 환기 (시간당 20회 이상) 및 방화구획 검토 필요</text>
+</g>
+
+</svg>
+</div>
+
+<div class="info-box">
+  <h3>주방 동선 계획 설명</h3>
+  <div class="flow-item">
+    <span class="flow-icon" style="color:#e67e22">▶</span>
+    <div><strong>숯 동선:</strong> 북측 납품문 → 숯 보관창고 → 숯 점화 스테이션 → 픽업 카운터(PASS Window) → 서빙직원 → 각 테이블</div>
+  </div>
+  <div class="flow-item">
+    <span class="flow-icon" style="color:#27ae60">▶</span>
+    <div><strong>식재료 동선:</strong> 북측 납품문 → 냉장/냉동 보관 → 조리·준비대 → 반찬·소스 작업대 → 픽업 카운터(PASS Window) → 서빙 → 테이블</div>
+  </div>
+  <div class="flow-item">
+    <span class="flow-icon" style="color:#2980b9">▶</span>
+    <div><strong>서빙 동선:</strong> 픽업 카운터 → 서버 스테이션 → 각 테이블 (단방향 통로 유지)</div>
+  </div>
+  <div class="flow-item">
+    <span class="flow-icon" style="color:#7f8c8d">▶</span>
+    <div><strong>반납/세척 동선:</strong> 홀 반납 → 픽업 카운터 내측 → 세척 구역 → 식기 보관대 → 재사용</div>
+  </div>
+  <div class="note">
+    📌 <strong>숯불 주방 추가 검토 필요 사항</strong><br>
+    1. 테이블별 개별 후드 덕트 (숯불 그릴 연기·CO 배기) — 구조체 관통 여부 사전 협의 필요<br>
+    2. 숯 점화실: 방화구획 + 시간당 20회 이상 강제 환기, CO·CO₂ 감지기 설치 의무<br>
+    3. 숯 납품 동선이 홀 고객 동선과 교차하지 않도록 북측 외부 납품문 확보 필수<br>
+    4. 보건소 영업신고 기준: 주방 면적 홀의 1/3 이상 권장 (현 약 28% → 추가 협의 가능)
+  </div>
+</div>
+
+</body>
+</html>
